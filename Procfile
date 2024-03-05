@@ -1,0 +1,1 @@
+web: gunicorn --threads=2 diploma.wsgi

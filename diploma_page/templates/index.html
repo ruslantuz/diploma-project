@@ -1,0 +1,599 @@
+	{% extends 'base.html' %}
+	{% block head %} 
+	{% load static %}		
+		<title>Travelian</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+	{% endblock head %}
+
+	{% block content %}
+	<section class="hero-section">
+		<div id="heroWrap" class="hero-wrap">
+			<div class = "hero-title d-flex">
+				<h1 class = "title-big white-text">Start your unforgettable journey with us.</h1>
+				<span class = "title-small d-block white-text ">The best travel for your jouney begins now</span>
+			</div>
+			<div class="form-wrap d-flex">
+				<form class="hero-form d-flex">
+					<div class="form-column d-flex">
+						<div class="form-item flex-column d-flex">				
+							<label for="destination">Destination</label>
+							<input type="text" id="destination">
+						</div>
+						<div class="form-item flex-column d-flex">				
+							<label for="person">Person</label>
+							<input type="number" id="person" min="1">
+
+						</div>
+						<div class="form-item flex-column d-flex">				
+							<label for="check-in">Check in</label>
+							<input type="date" id="check-in">
+						</div>
+						<div class="form-item flex-column d-flex">				
+							<label for="check-out">Check out</label>
+							<input type="date" id="check-out">
+						</div>
+					</div>
+					<div class="book-btn-wrap d-flex">
+						<input class = "book-btn pointer" type="submit" value="Book Now" >
+						<svg class = "book-arrow" xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
+							<path d="M21.7071 8.7071C22.0976 8.31658 22.0976 7.68342 21.7071 7.29289L15.3431 0.928931C14.9526 0.538406 14.3195 0.538407 13.9289 0.928931C13.5384 1.31946 13.5384 1.95262 13.9289 2.34314L19.5858 8L13.9289 13.6569C13.5384 14.0474 13.5384 14.6805 13.9289 15.0711C14.3195 15.4616 14.9526 15.4616 15.3431 15.0711L21.7071 8.7071ZM8.74228e-08 9L21 9L21 7L-8.74228e-08 7L8.74228e-08 9Z" fill="white"/>
+						</svg>
+					</div>
+				</form>
+			</div>
+			<div class="slider position-absolute">
+				<div class="slider-items">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<circle cx="8" cy="8" r="8" fill="#FF7757"/>
+					</svg>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<circle cx="8" cy="8" r="8" fill="white"/>
+					</svg>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<circle cx="8" cy="8" r="8" fill="white"/>
+					</svg>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<circle cx="8" cy="8" r="8" fill="white"/>
+					</svg>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+						<circle cx="8" cy="8" r="8" fill="white"/>
+					</svg>
+				</div>
+				<div class="slider-arrows">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
+						<path d="M15 7L8 0.999999L1 7" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="8" viewBox="0 0 16 8" fill="none">
+						<path d="M1 1L8 7L15 1" stroke="#FF7757" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id = "explore" class="destinations">
+		<div class="section-wrap">
+			<div class = "title-wrap d-flex">
+				<div class = "title-block">
+					<h1 class = "title-big black-text">Popular Destinations</h1>
+					<div class = "line gap-below-line gap-above-line"></div>
+					<span class = "title-small d-block grey-text ">Most popular destinations around the world, from historical places to natural wonders.</span>
+				</div>
+				<div class = "arrows-wrap arrows-above">
+					<div class = "arrows-item arrow-left">
+						<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M11 1L1 11L11 21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+					<div class = "arrows-item arrow-right">
+						<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 21L11 11L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+				</div>
+
+			</div>
+			<div class = "swiper mySwiper">
+				<div class=" content-block swiper-wrapper">
+
+					{% for item in dest %}
+					
+					<div style="background-image: url(media/{{item.dest_image}});" class = "content-item bg-options swiper-slide">
+						<div class = "content-text-block d-flex flex-column">
+							<span class = "location-title">{{item.place}}</span>
+							<div class = "content-location">
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M3.5625 8.4375C3.5625 12.6054 6.74442 17.1274 9.55209 21.0351C10.2195 21.9634 10.8588 22.8526 11.415 23.6869C11.5454 23.8826 11.7652 24 12 24C12.2347 24 12.4545 23.8826 12.585 23.6869C13.1411 22.8526 13.7804 21.9634 14.4478 21.0351C17.2556 17.1274 20.4375 12.6054 20.4375 8.4375C20.4375 3.78478 16.6527 0 12 0C7.34728 0 3.5625 3.78478 3.5625 8.4375ZM16.2188 8.4375C16.2188 10.7639 14.3264 12.6562 12 12.6562C9.67364 12.6562 7.78125 10.7639 7.78125 8.4375C7.78125 6.11114 9.67364 4.21875 12 4.21875C14.3264 4.21875 16.2188 6.11114 16.2188 8.4375Z" fill="white"/>
+								<path d="M12 11.25C13.5533 11.25 14.8125 9.9908 14.8125 8.4375C14.8125 6.8842 13.5533 5.625 12 5.625C10.4467 5.625 9.1875 6.8842 9.1875 8.4375C9.1875 9.9908 10.4467 11.25 12 11.25Z" fill="white"/>
+								</svg>
+								<span class = "title-small white-text">{{item.location}}</span>			
+							</div>
+						</div>
+					</div>
+
+					{% endfor %}
+				</div>
+			</div>
+			<div class = "arrows-wrap arrows-below">
+				<div class = "arrows-item arrow-left">
+					<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M11 1L1 11L11 21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+				<div class = "arrows-item arrow-right">
+					<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 21L11 11L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id = "travel" class="special-offers">
+		<div class="section-wrap">
+			<div class = "title-wrap d-flex">
+				<div class = "title-block">
+					<h1 class = "title-big black-text">Special Offer</h1>
+					<div class = "line gap-above-line gap-below-line"></div>
+					<span class = "title-small d-block grey-text">Check out our special offer and discounts</span>
+				</div>
+
+				<div class = "arrows-wrap arrows-above">
+					<div class = "arrows-item arrow-left">
+						<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M11 1L1 11L11 21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+					<div class = "arrows-item arrow-right">
+						<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 21L11 11L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+				</div>
+			</div>
+			<div class="swiper offerSwiper">
+				<div class = "offer-wrap d-flex swiper-wrapper">
+					
+					{% for item in data %}
+					<div class = "offer-item swiper-slide">
+						<div style="background-image: url(media/{{item.offer_image}});" class = "offer-image-block bg-options">	
+							
+						</div>
+						<div class = "offer-text-block">	
+							<div class = "offer-rate">
+								<span class = "offer-title grey-text d-block">{{ item.location }}</span>
+								
+								{% for i in '0123456789'|make_list %}
+									{% if  forloop.counter <= item.rating %}
+									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M12 2.00006L15.09 8.26006L22 9.27006L17 14.1401L18.18 21.0201L12 17.7701L5.82 21.0201L7 14.1401L2 9.27006L8.91 8.26006L12 2.00006Z" fill="#FFC107"/>
+										</svg>
+									{% endif %}
+								{% endfor %}
+
+							</div>
+							<span class = "offer-description d-block">{{ item.description }}</span>
+							<div class="www">
+								<div class="offer-price-details">
+									<div class = "offer-price-wrap">
+										<span class = "title-small grey-text">From</span>	
+										<span class = "offer-price">€{{ item.pricing }}</span>	
+									</div>
+									<div class = "offer-details">
+										<a class="offer-btn" href = "offers/{{item.id}}">Details</a>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>	
+					{% endfor %}
+					
+				</div>
+			</div>
+			<div class = "arrows-wrap arrows-below">
+				<div class = "arrows-item arrow-left">
+					<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M11 1L1 11L11 21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+				<div class = "arrows-item arrow-right">
+					<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 21L11 11L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section id = blog class="blog">
+		<div class="section-wrap">
+			<div class = "title-wrap">
+				<div class = "title-block">
+					<h1 class = "title-big black-text">Our Blog</h1>
+					<div class = "line gap-above-line gap-below-line"></div>
+					<span class = "title-small d-block grey-text">An insight the incredible experience in the world</span>
+				</div>
+			</div>
+			<div class="blog-post-wrap d-flex">
+				<div class = "blog-image-block backgr-position">	
+						
+				</div>
+				<div class="blog-text d-flex flex-column">
+					<div class="blog-title black-text">
+						<span class="d-block">
+							Beautiful Italy<br>
+							Let’s travel
+						</span>
+
+					</div>
+					<span class = "blog-description d-block black-text normal-text">
+						Italy, a land where history, art, and natural beauty intertwine, beckons travelers with its timeless charm. From the rolling hills of Tuscany to the ancient ruins of Rome, each corner of this Mediterranean jewel tells a story of a rich and diverse cultural tapestry. Italy's cultural heritage is deeply embedded in its daily life. From the passionate operas in Verona to the lively street festivals in Palermo, you'll find a nation that celebrates its traditions with pride. The ruins of Pompeii whisper tales of ancient civilizations, and the leaning tower of Pisa stands as a testament to architectural marvels.Beyond the monuments and landscapes, it's the warmth of the Italian people that leaves an indelible mark.
+					</span>
+					<div class="blog-read-more d-flex  pointer">
+						<a href="blog/" class = "blog-read-more-text d-block">
+							Read More
+						</a>
+						<svg xmlns="http://www.w3.org/2000/svg" width="28" height="16" viewBox="0 0 28 16" fill="none">
+							<path d="M27.7071 8.7071C28.0976 8.31658 28.0976 7.68342 27.7071 7.29289L21.3431 0.92893C20.9526 0.538406 20.3195 0.538406 19.9289 0.92893C19.5384 1.31945 19.5384 1.95262 19.9289 2.34314L25.5858 8L19.9289 13.6569C19.5384 14.0474 19.5384 14.6805 19.9289 15.0711C20.3195 15.4616 20.9526 15.4616 21.3431 15.0711L27.7071 8.7071ZM8.74228e-08 9L27 9L27 7L-8.74228e-08 7L8.74228e-08 9Z" fill="#FF7757"/>
+						  </svg>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	
+	<section id = "pricing" class="trip-planners">
+		<div class="section-wrap">
+			<div class="inner-wrap">
+				<div class = "title-wrap">
+					<div class = "title-block">
+						<h1 class = "title-big black-text">Trip Planners</h1>
+						<div class = "line gap-above-line gap-below-line"></div>
+						<span class = "normal-text d-block grey-text">20 years from now you will be more disappointed by the things that you didn’t do. Stop regretting and start travelling, start throwing off the bowlines.</span>
+						<div class="planners-view-btn">
+							<div class="planner-view-link-wrap">
+								<div class="rectangle rectangle-left"></div>
+								<a class = "planners-view-link normal-text white-text" href="#">View all trip plans</a>
+								<div class="rectangle rectangle-right"></div>
+							</div>	
+						</div>
+					</div>
+				</div>
+				<div class="planners-wrap">
+
+						<div class="planner-item">
+							<div class="planner-gallery-image planner-popup backgr-position bg-options planner-img1">
+								
+							</div>						
+							<div class="planner-text flex-column">
+								<div class="price-day">
+									<span class = "planner-price-text title-small d-block">
+										Guided Tour
+									</span>
+									<span class = "planner-price-number title-small d-block">
+										€99/Day
+									</span>
+								</div>
+								<span class = "planner-title pointer d-block">
+									Rome City Tour
+								</span>
+								<div class="price-day">
+									<div class="planner-stars">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+											<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+										</svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+											<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+										</svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+											<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+										</svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+											<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+										</svg>
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+											<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+										</svg>
+									</div>
+									<span class = "planner-days title-small d-block">
+										7 Days tour
+									</span>
+								</div>
+							</div>
+						</div>
+					
+					<div class="planner-item">
+						<div class="planner-gallery-image planner-popup planner-gallery-image-active backgr-position bg-options planner-img2">
+							
+						</div>
+						<div class="planner-text flex-column planner-active">
+							<div class="price-day">
+								<span class = "planner-price-text title-small d-block">
+									Guided Tour
+								</span>
+								<span class = "planner-price-number title-small d-block">
+									€119/Day
+								</span>
+							</div>
+							<span class = "planner-title pointer d-block">
+								Paris City Tour
+							</span>
+							<div class="price-day">
+								<div class="planner-stars">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+								</div>
+								<span class = "planner-days title-small d-block">
+									7 Days tour
+								</span>
+							</div>
+						</div>
+					</div>
+								
+					<div class="planner-item">
+						<div class="planner-gallery-image planner-popup backgr-position bg-options planner-img3">
+			
+						</div>
+						<div class="planner-text flex-column">
+							<div class="price-day">
+								<span class = "planner-price-text title-small d-block">
+									Guided Tour
+								</span>
+								<span class = "planner-price-number title-small d-block">
+									€89/Day
+								</span>
+							</div>
+							<span class = "planner-title pointer d-block">
+								Madrid City Tour
+							</span>
+							<div class="price-day">
+								<div class="planner-stars">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+								</div>
+								<span class = "planner-days title-small d-block">
+									7 Days tour
+								</span>
+							</div>
+						</div>
+					</div>		
+
+					<div class="planner-item">
+						<div class="planner-gallery-image planner-popup backgr-position bg-options planner-img4">
+			
+						</div>
+						<div class="planner-text flex-column">
+							<div class="price-day">
+								<span class = "planner-price-text title-small d-block">
+									Guided Tour
+								</span>
+								<span class = "planner-price-number title-small d-block">
+									€59/Day
+								</span>
+							</div>
+							<span class = "planner-title pointer d-block">
+								Budapest City Tour
+							</span>
+							<div class="price-day">
+								<div class="planner-stars">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+								</div>
+								<span class = "planner-days title-small d-block">
+									7 Days tour
+								</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="gallery">
+		<div class="section-wrap">
+			<div class = "title-wrap d-flex">
+				<div class = "title-block">
+					<h1 class = "title-big black-text">Destination Gallery</h1>
+					<div class = "line gap-above-line gap-below-line"></div>
+					<span class = "title-small d-block grey-text">Our photo gallery on trip</span>
+				</div>
+				<div class = "arrows-wrap arrows-above">
+					<div class = "arrows-item arrow-left">
+						<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M11 1L1 11L11 21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+					<div class = "arrows-item arrow-right">
+						<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<path d="M1 21L11 11L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+						</svg>
+					</div>
+				</div>	
+			</div>
+			<div class="gallery-images-wrap d-flex" id="my_nanogallery2" data-nanogallery2>				
+				<div class="planner-gallery-image backgr-position bg-options gallery-img1"></div>
+				<div class="planner-gallery-image backgr-position bg-options gallery-img2"></div>
+				<div class="planner-gallery-image backgr-position bg-options gallery-img3"></div>
+				<div class="planner-gallery-image backgr-position bg-options gallery-img4"></div>
+			</div>
+			<div class = "arrows-wrap arrows-below">
+				<div class = "arrows-item arrow-left">
+					<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M11 1L1 11L11 21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+				<div class = "arrows-item arrow-right">
+					<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 21L11 11L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+			</div>
+		</div>
+	</section>
+	<section class="reviews">
+		<div class="section-wrap">
+			<div class="inner-wrap">
+			<div class = "title-wrap">
+				<div class = "title-block">
+					<h1 class = "title-big black-text">Traveler’s Experiences</h1>
+					<div class = "line gap-above-line gap-below-line"></div>
+					<span class = "title-small d-block grey-text">Here some awesome feedback from our travelers</span>
+				</div>
+
+			</div>
+			<div class="reviews-wrap">
+				<div id = "firstClient" class="review-block flex-column">
+					<div class="review-avatar position-absolute backgr-position avatar1 bg-options"></div>
+					<span class = "normal-text d-block grey-text">
+						I recently booked a trip through this agency, and it exceeded all my expectations! The website was user-friendly, making it easy to explore different destinations and find the perfect package. From the moment I inquired to the end of the trip, the customer service was exceptional. Our tour guide was knowledgeable, and the itinerary was well-planned. I highly recommend this agency to anyone looking for a seamless and unforgettable travel experience!					</span>
+					<div class="review-rate">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+					</div>
+					<div class="review-client">
+						<span class = "client-name d-block grey-text">
+							John Doe
+						</span>
+						<span class = "normal-text d-block grey-text">
+							Accountant
+						</span>
+					</div>
+				</div>
+				<div class="review-block flex-column">
+					<div class="review-avatar position-absolute backgr-position avatar2 bg-options"></div>
+					<span class = "normal-text  d-block grey-text">
+						I stumbled upon this trip agency website while planning my vacation, and it turned out to be a fantastic find! The booking process was straightforward, and they offered a variety of tours within my budget. The website provided detailed information about each destination, making it easy for me to choose. The best part was the amazing deals they offered. I got more value for my money than I expected. I'm already thinking about my next adventure with this agency!
+					</span>
+					<div class="review-rate">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+					</div>
+					<div class="review-client">
+						<span class = "client-name d-block grey-text">
+							John Smith
+						</span>
+						<span class = "normal-text d-block grey-text">
+							Journalist, HWO News
+						</span>
+					</div>
+				</div>
+				<div class="review-block flex-column">
+					<div class="review-avatar position-absolute backgr-position avatar3 bg-options"></div>
+					<span class = "normal-text  d-block grey-text">
+						Thanks to this trip agency, I just had the vacation of a lifetime! The website not only showcased stunning destinations but also provided insights into local culture and activities. The booking process was smooth, and the customer support team was responsive and helpful. The tour itself was well-organized, and every detail was taken care of. I felt like I was living a dream. I can't thank the agency enough for making my vacation so memorable. I'll definitely be a repeat customer!
+					</span>
+					<div class="review-rate">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+						  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+							<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+						  </svg>
+					</div>
+					<div class="review-client">
+						<span class = "client-name d-block grey-text">
+							Tamara Bellis
+						</span>
+						<span class = "normal-text d-block grey-text">
+							Managing Director, JTH
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class = "arrows-wrap arrows-above" >
+				<div class = "arrows-item arrow-left">
+					<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M11 1L1 11L11 21" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+				<div class = "arrows-item arrow-right">
+					<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 21L11 11L0.999999 1" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+					</svg>
+				</div>
+			</div>
+		</div>
+		</div>
+	</section>
+{% endblock content %}
+{% block scripts %}
+<script src="{% static 'blog_page/scripts/comment_collapse.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>	
+<script src="{% static 'scripts/carousel_script.js' %}"></script>  
+<script src="{% static 'scripts/planner_popup.js' %}"></script>  
+{% endblock scripts %}

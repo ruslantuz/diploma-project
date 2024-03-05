@@ -1,0 +1,257 @@
+<!doctype html>
+{% load static %}
+<html lang="en-US">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	
+	<meta name="description" content="Travel throughout Europe">
+
+	<meta property="og:title" content="Travellian Travel Agency">
+	<meta property="og:description" content="Travel throughout the Europe!">
+	<meta property="og:url" content="https://kursova-production-0300.up.railway.app/">
+	<meta property="og:type" content="article">
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="Travellian Travel Agency">
+	<meta name="twitter:description" content="Travel throughout the Europe!">
+	<meta name="twitter:url" content="https://kursova-production-0300.up.railway.app/">
+
+	<meta name="keywords" content="travel, Europe, trip, trip plan">
+
+	<meta name="robots" content="index, follow">
+
+	<meta name="author" content="Travellian">
+	
+	<link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+
+	<link rel="stylesheet" href="{% static 'styles/style.css' %}">
+	{% block head %} {% endblock head %}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+	<header id="headerId" class = "head">
+		<div class="head-wrapper d-flex">
+			<div onclick = "location.href='/';" style="cursor:pointer;" class="logo"></div>
+			<div id="iconMenu" class="menu-btn">
+				<span></span>
+			</div>
+			<nav id="navigation" class="header-menu hide">
+				<ul class = "menu">
+					<li class="current-item">
+						<a class="header-emailform-font" href="/#heroWrap">Home</a>
+					</li>
+					<li>
+						<a class="header-emailform-font" href="/#explore">Explore</a>
+					</li>
+					<li>
+						<a class="header-emailform-font" href="/#travel">Travel</a>
+					</li>
+					<li>
+						<a class="header-emailform-font" href="/#blog">Blog</a>
+					</li>
+					<li>
+						<a class="header-emailform-font" href="/#pricing">Pricing</a>
+					</li>
+
+				</ul>
+				<span id="slide-line" class="position-absolute"></span>
+			</nav>
+			<div class="login-wrap hide">
+				<div class= "btn-login-signup">
+					{% if user.is_authenticated %}
+					<a href="{% url 'logout' %}" class="header-emailform-font" id="loginBtn">Logout</a>
+					<a href="{% url 'login' %}" class="signup-btn d-flex header-emailform-font">My Account</a>
+					{% else %}
+					<span class="header-emailform-font" id="loginBtn">Login</span>
+					<span class="signup-btn d-flex header-emailform-font" id="signupBtn" >Sign up</span>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<div class="modal-cont" id="loginModal">
+		<div id="login-modal" class="modal-box">
+			<form action="/login_user" class="login-form form-column d-flex" method="POST">       
+				{% csrf_token %} 
+				<h2 class="title-small black-text">Please login</h2>
+				<input type="text" class="" name="username" placeholder="Username" required="" >
+				<input type="password" class="" name="password" placeholder="Password" required="">      
+				<button class="modal-btn white-text" type="submit">Login</button>   
+			</form>
+			<i class="fa-solid fa-circle-xmark close-btn"></i>
+		</div>	  
+	</div>
+
+	<div id="registerModal" class="modal-cont">
+		<div class="modal-box">
+			<form class="login-form form-column d-flex" method="POST">       
+				{% csrf_token %} 
+				<h2 class="title-small black-text">Please Sign Up</h2>
+				{% for field in form %}
+					{{field}}
+				{% endfor %}				
+				<button class="modal-btn white-text" type="submit">Sign Up</button>   
+			</form>
+			<i class="fa-solid fa-circle-xmark close-btn"></i>
+		</div>
+	</div>	  
+		{% block content %} {% endblock content %}
+		<div class="relative-wrap">
+			<section class="news-form">
+				<div class="news-form-wrap d-flex">
+					<h1 class = "title-big grey-text">Our Newsletter</h1>
+					<div class="news-email">
+						<form class="d-flex email-form">
+							<div class="email-input-wrap">
+								<label class="header-emailform-font grey-text d-block" for="email">Email</label>
+								<input class="email-input header-emailform-font d-block" type="email" id="email" name="email" placeholder="Enter your email">
+							</div>
+							
+							<input class="email-subscribe header-emailform-font white-text" type="submit" value="Subscribe">
+						</form>
+					</div>
+				</div>
+			</section>
+		<footer>
+			<div class="section-wrap">
+				<div class="inner-wrap d-flex">
+					<div class="footer-logo">
+						<div class="logo"></div>
+						<span class = "copyright normal-text d-block white-text">Copyright © Travellian 2020 All rights reserved</span>
+					</div>
+					<div class="footer-menu">
+						<span class = "footer-title title-small d-block white-text">Menu</span>
+						<nav>
+							<ul class = "menu d-flex">
+								<li>
+									<a class="list-item" href="/#heroWrap">Home</a>
+								</li>
+								<li>
+									<a class="list-item" href="/#explore">Explore</a>
+								</li>
+								<li>
+									<a class="list-item" href="/#travel">Travel</a>
+								</li>
+								<li>
+									<a class="list-item" href="/#blog">Blog</a>
+								</li>
+								<li>
+									<a class="list-item" href="/#pricing">Pricing</a>
+								</li>
+							</ul>
+						</nav>
+					</div>
+					<div class="footer-info">
+						<span class = "footer-title title-small d-block white-text">Information</span>
+						<ul class = "menu">
+							<li>
+								<a class="list-item" href="#">Destinations</a>
+							</li>
+							<li>
+								<a class="list-item" href="#">Supports</a>
+							</li>
+							<li>
+								<a class="list-item" href="#">Terms & Conditions</a>
+							</li>
+							<li>
+								<a class="list-item" href="#">Privacy</a>
+							</li>
+						</ul>
+					</div>
+					<div class="footer-contact">
+						<span class = "footer-title title-small d-block white-text">Contact Info</span>
+						<ul class = "menu">
+							<li>
+								<a class="list-item" href="#">+123 456 789</a>
+							</li>
+							<li>
+								<a class="list-item" href="#">info@travellian.com</a>
+							</li>
+							<li>
+								<a class="list-item" href="#">1245, New Yourk, USA</a>
+							</li>
+						</ul>
+					</div>
+					<div class="footer-socials">
+						<span class = "footer-title title-small d-block white-text">Follow us on</span>
+						<div class="social-icons d-flex">
+							<a href="https://www.facebook.com/">
+								<svg xmlns="http://www.w3.org/2000/svg" width="32" height="33" viewBox="0 0 32 33" fill="none">
+									<g clip-path="url(#clip0_38_1149)">
+									<path fill-rule="evenodd" clip-rule="evenodd" d="M15.9489 0.59375C18.8335 0.626667 21.4394 1.33561 23.7667 2.72058C26.0662 4.0779 27.9791 6.00247 29.3224 8.31024C30.6989 10.6516 31.4036 13.2733 31.4364 16.1754C31.3547 20.1463 30.1022 23.5377 27.6791 26.3499C25.256 29.162 22.1526 30.9017 18.9399 31.5687V20.4357H21.9772L22.6641 16.0607H18.0649V13.1952C18.0394 12.6011 18.2272 12.0176 18.5945 11.55C18.9623 11.0811 19.61 10.8347 20.5376 10.8107H23.3149V6.97829C23.2751 6.96547 22.8969 6.91477 22.1805 6.82619C21.3681 6.73113 20.551 6.68036 19.733 6.67409C17.8817 6.68264 16.4175 7.20487 15.3405 8.24081C14.2634 9.27645 13.7133 10.7748 13.6899 12.7359V16.0607H10.1899V20.4357H13.6899V31.5687C9.74526 30.9017 6.64181 29.162 4.21869 26.3499C1.79556 23.5377 0.543188 20.1462 0.461426 16.1754C0.494138 13.2731 1.1988 10.6514 2.5754 8.31024C3.9187 6.00247 5.83158 4.07791 8.13113 2.72058C10.4584 1.33588 13.0643 0.626933 15.9489 0.59375Z" fill="white"/>
+									</g>
+									<defs>
+									<clipPath id="clip0_38_1149">
+										<rect width="32" height="32" fill="white" transform="translate(0 0.108398)"/>
+									</clipPath>
+									</defs>
+								</svg>
+							</a>
+							<a href="https://www.pinterest.com/">
+								<svg xmlns="http://www.w3.org/2000/svg" width="40" height="41" viewBox="0 0 40 41" fill="none">
+									<path d="M36.0002 20.5889C36.2402 11.4289 28.8802 3.98885 19.7602 4.10885C11.0002 4.22885 3.92018 11.4689 4.00018 20.2289C4.04018 26.5089 7.72018 31.9089 13.0002 34.5089C13.3202 34.6689 13.6802 34.4289 13.6402 34.0689C13.6002 33.0289 13.6402 31.9489 13.8402 31.0689C14.0402 30.1889 14.8402 26.8289 15.3602 24.6289C15.6002 23.5489 15.6402 22.4289 15.4402 21.3489C15.3602 20.9889 15.3202 20.5889 15.3202 20.1089C15.3202 17.7489 16.6802 15.9889 18.4002 15.9889C19.8402 15.9889 20.5602 17.0689 20.5602 18.3889C20.5602 19.8289 19.6402 22.0289 19.1602 24.0689C18.7602 25.7489 20.0002 27.1489 21.6802 27.1489C24.7202 27.1489 27.0402 23.9489 27.0402 19.3489C27.0402 15.2689 24.1202 12.4289 19.9202 12.4289C15.0802 12.4289 12.2402 16.0689 12.2402 19.8289C12.2402 21.3089 12.8002 22.8689 13.5202 23.7089C13.6402 23.8689 13.6802 24.0289 13.6402 24.1889C13.5202 24.7089 13.2402 25.8689 13.1602 26.1089C13.0802 26.4289 12.9202 26.4689 12.6002 26.3489C10.4802 25.3089 9.12018 22.1889 9.12018 19.7089C9.12018 14.3489 13.0002 9.42885 20.3602 9.42885C26.2402 9.42885 30.8402 13.6289 30.8402 19.2689C30.8402 25.1489 27.1602 29.8289 22.0002 29.8289C20.6402 29.8289 19.3602 29.2689 18.6002 28.5089C18.3602 28.2689 17.9602 28.3889 17.8802 28.7089C17.6002 29.7089 17.2002 31.3889 17.0402 31.9089C16.8002 32.8689 16.2802 33.9888 15.7202 34.9888C15.5602 35.2288 15.7202 35.5889 16.0002 35.6289C17.3202 35.9489 18.6802 36.1488 20.0802 36.1089C28.5602 36.0289 35.7602 28.9889 36.0002 20.5889Z" fill="white"/>
+								</svg>
+							</a>
+							<a href="https://www.instagram.com/">
+								<svg xmlns="http://www.w3.org/2000/svg" width="32" height="33" viewBox="0 0 32 33" fill="none">
+									<g clip-path="url(#clip0_38_1156)">
+									<path d="M16.3149 32.1083C16.209 32.1083 16.103 32.1083 15.9963 32.1078C13.488 32.1139 11.1704 32.0502 8.9165 31.913C6.8501 31.7873 4.96387 31.0731 3.46143 29.8481C2.01172 28.6659 1.02173 27.0675 0.519043 25.0978C0.081543 23.383 0.0583496 21.6996 0.0361328 20.0714C0.0200195 18.9032 0.00341797 17.519 0 16.1112C0.00341797 14.6977 0.0200195 13.3134 0.0361328 12.1452C0.0583496 10.5172 0.081543 8.83389 0.519043 7.11881C1.02173 5.14908 2.01172 3.55069 3.46143 2.36856C4.96387 1.14346 6.8501 0.429354 8.91675 0.303621C11.1707 0.166658 13.4888 0.102693 16.0024 0.108797C18.5115 0.103426 20.8284 0.166658 23.0823 0.303621C25.1487 0.429354 27.0349 1.14346 28.5373 2.36856C29.9873 3.55069 30.977 5.14908 31.4797 7.11881C31.9172 8.83365 31.9404 10.5172 31.9626 12.1452C31.9788 13.3134 31.9956 14.6977 31.9988 16.1054V16.1112C31.9956 17.519 31.9788 18.9032 31.9626 20.0714C31.9404 21.6994 31.9175 23.3827 31.4797 25.0978C30.977 27.0675 29.9873 28.6659 28.5373 29.8481C27.0349 31.0731 25.1487 31.7873 23.0823 31.913C20.9238 32.0443 18.7065 32.1083 16.3149 32.1083ZM15.9963 29.6078C18.4639 29.6137 20.7295 29.5514 22.9304 29.4176C24.4929 29.3227 25.8477 28.8156 26.9575 27.9106C27.9834 27.0739 28.6899 25.9196 29.0574 24.4796C29.4216 23.0522 29.4426 21.5194 29.4629 20.0373C29.4788 18.8769 29.4954 17.5023 29.4988 16.1083C29.4954 14.714 29.4788 13.3398 29.4629 12.1794C29.4426 10.6972 29.4216 9.16446 29.0574 7.73673C28.6899 6.29678 27.9834 5.14249 26.9575 4.30582C25.8477 3.40103 24.4929 2.89395 22.9304 2.79898C20.7295 2.66495 18.4639 2.60318 16.0022 2.60855C13.5352 2.60269 11.2693 2.66495 9.06836 2.79898C7.50586 2.89395 6.15112 3.40103 5.04126 4.30582C4.01538 5.14249 3.30884 6.29678 2.94141 7.73673C2.57715 9.16446 2.55615 10.6969 2.53589 12.1794C2.52002 13.3407 2.50342 14.716 2.5 16.1112C2.50342 17.5004 2.52002 18.8759 2.53589 20.0373C2.55615 21.5194 2.57715 23.0522 2.94141 24.4796C3.30884 25.9196 4.01538 27.0739 5.04126 27.9106C6.15112 28.8153 7.50586 29.3224 9.06836 29.4174C11.2693 29.5514 13.5356 29.6139 15.9963 29.6078ZM15.9368 23.9208C11.6291 23.9208 8.12427 20.4162 8.12427 16.1083C8.12427 11.8004 11.6291 8.29581 15.9368 8.29581C20.2446 8.29581 23.7493 11.8004 23.7493 16.1083C23.7493 20.4162 20.2446 23.9208 15.9368 23.9208ZM15.9368 10.7958C13.0076 10.7958 10.6243 13.1791 10.6243 16.1083C10.6243 19.0375 13.0076 21.4208 15.9368 21.4208C18.8662 21.4208 21.2493 19.0375 21.2493 16.1083C21.2493 13.1791 18.8662 10.7958 15.9368 10.7958ZM24.6243 5.79581C23.5889 5.79581 22.7493 6.63516 22.7493 7.67081C22.7493 8.70645 23.5889 9.54581 24.6243 9.54581C25.6599 9.54581 26.4993 8.70645 26.4993 7.67081C26.4993 6.63516 25.6599 5.79581 24.6243 5.79581Z" fill="white"/>
+									</g>
+									<defs>
+									<clipPath id="clip0_38_1156">
+										<rect width="32" height="32" fill="white" transform="translate(0 0.108398)"/>
+									</clipPath>
+									</defs>
+								</svg>
+							</a>
+							<a href="https://twitter.com/">
+								<svg xmlns="http://www.w3.org/2000/svg" width="32" height="33" viewBox="0 0 32 33" fill="none">
+									<path d="M28.768 8.17201C27.808 8.58801 26.816 8.87601 25.76 9.00401C26.848 8.36401 27.68 7.34001 28.064 6.09201C27.04 6.70001 25.92 7.11601 24.736 7.37201C23.776 6.34801 22.4 5.70801 20.896 5.70801C17.984 5.70801 15.648 8.07601 15.648 10.956C15.648 11.372 15.68 11.756 15.776 12.14C11.424 11.948 7.58397 9.83601 4.99197 6.66801C3.13597 9.99601 5.21597 12.748 6.59197 13.676C5.75997 13.676 4.92797 13.42 4.22397 13.036C4.22397 15.628 6.04797 17.772 8.41597 18.252C7.90397 18.412 6.75197 18.508 6.04797 18.348C6.71997 20.428 8.67197 21.964 10.944 21.996C9.15197 23.404 6.52797 24.524 3.16797 24.172C5.50397 25.676 8.25597 26.54 11.232 26.54C20.896 26.54 26.144 18.54 26.144 11.628C26.144 11.404 26.144 11.18 26.112 10.956C27.2 10.156 28.096 9.22801 28.768 8.17201Z" fill="white"/>
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="{% static 'scripts/underline_script.js' %}"></script>
+
+
+	<script src="{% static 'scripts/hamburger.js' %}"></script>  
+	<script src="{% static 'scripts/header_script.js' %}"></script>  
+
+
+	{% if user.is_authenticated == False %}
+		<script src="{% static 'scripts/modal.js' %}"></script>  
+	{% endif %}
+	
+	{% for message in messages %}
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+		{% if 'error' in message.tags and 'register' in message.tags %}
+			<script>
+				Swal.fire({
+					title: 'Register error!',
+					html: 'Error field: {{message}}',
+					confirmButtonText: 'Close',
+				})
+			</script>
+		{% elif 'error' in message.tags and 'login' in message.tags %}
+			<script>
+				Swal.fire({
+					title: 'Login error!',
+					text: '{{message}}',
+					confirmButtonText: 'Close',
+				})
+			</script>
+		{% endif %}
+	{% endfor %}
+
+	{% block scripts %} {% endblock scripts %}
+  </body>
+</html>
