@@ -738,7 +738,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
     display: -ms-flexbox;
     display: flex;
     padding: 20px 0;
-    gap: 12px
+    gap: 12px;
 }
 
 .price-day {
@@ -750,18 +750,18 @@ input[type=date]::-webkit-calendar-picker-indicator {
     justify-content: space-between;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center
+    align-items: center;
 }
 
 .planner-price-text {
-    text-transform: uppercase
+    text-transform: uppercase;
 }
 
 .planner-title {
     color: #172432;
     font-family: var(--page-font1);
     font-size: 28px;
-    font-weight: 600
+    font-weight: 600;
 }
 
 .gallery-images-wrap {
@@ -770,23 +770,23 @@ input[type=date]::-webkit-calendar-picker-indicator {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column;
-    gap: 32px
+    gap: 32px;
 }
 
 .gallery-img1 {
-    background-image: url(../images/gallery_pics/gallery1.jpg)
+    background-image: url(../images/gallery_pics/gallery1.jpg);
 }
 
 .gallery-img2 {
-    background-image: url(../images/gallery_pics/gallery2.jpg)
+    background-image: url(../images/gallery_pics/gallery2.jpg);
 }
 
 .gallery-img3 {
-    background-image: url(../images/gallery_pics/gallery3.jpg)
+    background-image: url(../images/gallery_pics/gallery3.jpg);
 }
 
 .gallery-img4 {
-    background-image: url(../images/gallery_pics/gallery4.jpg)
+    background-image: url(../images/gallery_pics/gallery4.jpg);
 }
 
 .review-block {
@@ -1309,7 +1309,7 @@ footer .menu {
     }
 
     .planner-item {
-        width: 250px
+        max-width: 250px
     }
 
     .planner-text {
@@ -1834,4 +1834,12 @@ summary {
 
 .swal2-confirm {
     background: var(--main-page-color) !important
+}
+
+.plannerSwiper{
+    margin: 0 !important;
+}
+
+.planner-item{
+    flex-direction: column;
 }

@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-81_lfvtlaxpu4olv#0+%suwna6&f2!vog2ob4q%+ow@s1tm328'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 handler404 = 'diploma_page.views.custom_404'
 

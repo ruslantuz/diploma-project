@@ -32,7 +32,7 @@
 							<label for="check-out">Check out</label>
 							<input type="date" id="check-out">
 						</div>
-					</div>
+					</div>				
 					<div class="book-btn-wrap d-flex">
 						<input class = "book-btn pointer" type="submit" value="Book Now" >
 						<svg class = "book-arrow" xmlns="http://www.w3.org/2000/svg" width="22" height="16" viewBox="0 0 22 16" fill="none">
@@ -259,48 +259,88 @@
 						</div>
 					</div>
 				</div>
-				<div class="planners-wrap">
-
-						<div class="planner-item">
-							<div class="planner-gallery-image planner-popup backgr-position bg-options planner-img1">
+				<div class="planners-wrap swiper plannerSwiper">
+					<div class = "offer-wrap d-flex swiper-wrapper">
+						<!-- Django -->
+						{% for item in planners %}
+						<div class="planner-item swiper-slide">
+							<div style = "background-image: url(media/{{item.planner_image}});;" class="planner-gallery-image planner-popup backgr-position bg-options">
 								
 							</div>						
+							<!-- <img class="planner-gallery-image planner-popup" src="media/{{item.planner_image}}" alt="planner{{item.id}}"> -->
 							<div class="planner-text flex-column">
 								<div class="price-day">
 									<span class = "planner-price-text title-small d-block">
-										Guided Tour
+										{{item.type}}
 									</span>
 									<span class = "planner-price-number title-small d-block">
-										€99/Day
+										€{{item.cost}}/Day
 									</span>
 								</div>
 								<span class = "planner-title pointer d-block">
-									Rome City Tour
+									{{item.title}}
 								</span>
 								<div class="price-day">
 									<div class="planner-stars">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-											<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
-										</svg>
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-											<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
-										</svg>
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-											<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
-										</svg>
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-											<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
-										</svg>
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-											<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
-										</svg>
+										{% for i in '0123456789'|make_list %}
+											{% if  forloop.counter <= item.rating %}
+											<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path d="M12 2.00006L15.09 8.26006L22 9.27006L17 14.1401L18.18 21.0201L12 17.7701L5.82 21.0201L7 14.1401L2 9.27006L8.91 8.26006L12 2.00006Z" fill="#FFC107"/>
+												</svg>
+											{% endif %}
+										{% endfor %}
 									</div>
 									<span class = "planner-days title-small d-block">
-										7 Days tour
+										{{ item.days }} Days tour
 									</span>
 								</div>
 							</div>
 						</div>
+						{% endfor %}
+						<!-- Django end -->
+					</div>
+
+					
+					<!-- <div class="planner-item">
+						<div class="planner-gallery-image planner-popup backgr-position bg-options planner-img1">
+							
+						</div>						
+						<div class="planner-text flex-column">
+							<div class="price-day">
+								<span class = "planner-price-text title-small d-block">
+									Guided Tour
+								</span>
+								<span class = "planner-price-number title-small d-block">
+									€99/Day
+								</span>
+							</div>
+							<span class = "planner-title pointer d-block">
+								Rome City Tour
+							</span>
+							<div class="price-day">
+								<div class="planner-stars">
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+									<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+										<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
+									</svg>
+								</div>
+								<span class = "planner-days title-small d-block">
+									7 Days tour
+								</span>
+							</div>
+						</div>
+					</div>
 					
 					<div class="planner-item">
 						<div class="planner-gallery-image planner-popup planner-gallery-image-active backgr-position bg-options planner-img2">
@@ -423,7 +463,7 @@
 								</span>
 							</div>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

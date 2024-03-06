@@ -1,6 +1,6 @@
 const plannerItem = document.querySelectorAll('.planner-item');
-var active = plannerItem[0].firstElementChild;
-var active2 = plannerItem[0].lastElementChild;
+plannerItem[0].firstElementChild.classList.toggle('planner-gallery-image-active');
+plannerItem[0].lastElementChild.classList.toggle('planner-active');
 plannerItem.forEach(element => {
     element.addEventListener("mouseover", () => {
         active = document.querySelector('.planner-active');

@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from diploma_page.models import Destinations, Offers
+from diploma_page.models import Destinations, Offers, Planners
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -10,8 +10,9 @@ from .forms import AccountCreationForm
 def index(request):
     data = Offers.objects.all()
     dest = Destinations.objects.all()
+    planners = Planners.objects.all()
     form = registerForm(request)
-    return render(request, 'index.html', {'data': data, 'dest':dest ,'form': form})
+    return render(request, 'index.html', {'data': data, 'dest':dest , 'planners' : planners ,'form': form})
 
 def registerForm(request):
     if request.method == "POST":

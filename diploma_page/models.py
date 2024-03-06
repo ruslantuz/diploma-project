@@ -18,3 +18,14 @@ class Destinations(models.Model):
 
     def __str__(self):
         return "id: " + str(self.id) + " - " + self.place
+    
+class Planners(models.Model):
+    title = models.CharField(max_length=100)
+    type = models.CharField(max_length=100)
+    cost = models.FloatField(max_length=10)
+    days = models.IntegerField()
+    rating = models.IntegerField()
+    planner_image = models.ImageField(null = True, blank=True, upload_to="images/")
+    
+    def __str__(self):
+        return "id: " + str(self.id) + " - " + self.title
