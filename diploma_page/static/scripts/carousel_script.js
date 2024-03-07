@@ -70,3 +70,24 @@ var gallerySwiper = new Swiper(".gallerySwiper", {
   },
 
 });
+
+var reviewsSwiper = new Swiper(".reviewsSwiper", {
+  slidesPerView: 1,
+  spaceBetween: 32,
+  breakpoints: {
+    500: {
+      slidesPerView: 2
+    },
+    1122: {
+      slidesPerView: 3
+    },
+    1400: {
+      slidesPerView: 4
+    }
+  },
+  grabCursor: true,
+  navigation: {
+    nextEl: ".reviews .arrow-right",
+    prevEl: ".reviews .arrow-left",
+  },
+});

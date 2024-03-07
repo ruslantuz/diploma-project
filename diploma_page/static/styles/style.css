@@ -789,7 +789,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 
 .review-block {
-    display: none;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
     padding: 60px 20px 32px 20px;
     margin: 100px 0;
     border-radius: 12px;
@@ -1116,7 +1118,6 @@ footer .menu {
     }
 
     .reviews-wrap {
-        gap: 32px;
         -ms-flex-wrap: nowrap;
         flex-wrap: nowrap
     }
@@ -1480,7 +1481,8 @@ footer .menu {
     }
 
     .hero-form .form-column,
-    .section-wrap .swiper {
+    .section-wrap .swiper:not(.reviewsSwiper)
+    {
         padding-left: var(--desktop-vertical-padding) !important;
         -webkit-box-pack: end;
         -ms-flex-pack: end;
