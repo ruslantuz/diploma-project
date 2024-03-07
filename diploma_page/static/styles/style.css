@@ -766,11 +766,10 @@ input[type=date]::-webkit-calendar-picker-indicator {
 
 .gallery-images-wrap {
     margin: 100px 0;
-    -webkit-box-orient: vertical;
+    /* -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
-    flex-direction: column;
-    gap: 32px;
+    flex-direction: column; */
 }
 
 .gallery-img1 {
@@ -1250,7 +1249,6 @@ footer .menu {
     }
 
     .blog-post-wrap,
-    .gallery-images-wrap,
     .planners-wrap {
         gap: 32px
     }
@@ -1293,13 +1291,15 @@ footer .menu {
     .trip-planners .inner-wrap {
         gap: 80px
     }
-
+    .planners-wrap {
+        overflow: hidden;
+    }
+    
     .gallery-images-wrap,
     .planners-wrap {
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        overflow: hidden;
         -ms-flex-negative: 0;
         flex-shrink: 0
     }
@@ -1843,3 +1843,21 @@ summary {
 .planner-item{
     flex-direction: column;
 }
+
+.fullscreen-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    backdrop-filter: blur(5px);
+  }
+
+  .swiper-button-lock{
+    display: inherit !important;
+  }

@@ -261,13 +261,11 @@
 				</div>
 				<div class="planners-wrap swiper plannerSwiper">
 					<div class = "offer-wrap d-flex swiper-wrapper">
-						<!-- Django -->
 						{% for item in planners %}
 						<div class="planner-item swiper-slide">
 							<div style = "background-image: url(media/{{item.planner_image}});;" class="planner-gallery-image planner-popup backgr-position bg-options">
 								
 							</div>						
-							<!-- <img class="planner-gallery-image planner-popup" src="media/{{item.planner_image}}" alt="planner{{item.id}}"> -->
 							<div class="planner-text flex-column">
 								<div class="price-day">
 									<span class = "planner-price-text title-small d-block">
@@ -297,7 +295,6 @@
 							</div>
 						</div>
 						{% endfor %}
-						<!-- Django end -->
 					</div>
 
 					
@@ -490,11 +487,13 @@
 					</div>
 				</div>	
 			</div>
-			<div class="gallery-images-wrap d-flex" id="my_nanogallery2" data-nanogallery2>				
-				<div class="planner-gallery-image backgr-position bg-options gallery-img1"></div>
-				<div class="planner-gallery-image backgr-position bg-options gallery-img2"></div>
-				<div class="planner-gallery-image backgr-position bg-options gallery-img3"></div>
-				<div class="planner-gallery-image backgr-position bg-options gallery-img4"></div>
+			<div class="swiper gallerySwiper">
+				<div class="gallery-images-wrap d-flex swiper-wrapper">		
+					<img src="../static/images/gallery_pics/gallery1.jpg" class="planner-gallery-image TinyZoom swiper-slide">
+					<img src="../static/images/gallery_pics/gallery2.jpg" class="planner-gallery-image TinyZoom swiper-slide">
+					<img src="../static/images/gallery_pics/gallery3.jpg" class="planner-gallery-image TinyZoom swiper-slide">
+					<img src="../static/images/gallery_pics/gallery4.jpg" class="planner-gallery-image TinyZoom swiper-slide">		
+				</div>
 			</div>
 			<div class = "arrows-wrap arrows-below">
 				<div class = "arrows-item arrow-left">
@@ -636,4 +635,5 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>	
 <script src="{% static 'scripts/carousel_script.js' %}"></script>  
 <script src="{% static 'scripts/planner_popup.js' %}"></script>  
+<script src="{% static 'scripts/TinyZoom.js' %}"></script>
 {% endblock scripts %}

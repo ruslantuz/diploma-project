@@ -48,3 +48,25 @@ plannerSwiper = new Swiper(".plannerSwiper", {
   },
   grabCursor: true
 });
+
+var gallerySwiper = new Swiper(".gallerySwiper", {
+  slidesPerView: 1,
+  spaceBetween: 32,
+  breakpoints: {
+    500: {
+      slidesPerView: 2
+    },
+    1122: {
+      slidesPerView: 3
+    },
+    1400: {
+      slidesPerView: 4
+    }
+  },
+  grabCursor: true,
+  navigation: {
+    nextEl: ".gallery .arrow-right",
+    prevEl: ".gallery .arrow-left",
+  },
+
+});
