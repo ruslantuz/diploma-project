@@ -155,13 +155,14 @@
 				<div class = "offer-wrap d-flex swiper-wrapper">
 					
 					{% for item in data %}
+					{% if item.is_special == True %}
 					<div class = "offer-item swiper-slide">
-						<div style="background-image: url(media/{{item.offer_image}});" class = "offer-image-block bg-options">	
+						<div style="background-image: url(media/{{item.trip_image}});" class = "offer-image-block bg-options">	
 							
 						</div>
 						<div class = "offer-text-block">	
 							<div class = "offer-rate">
-								<span class = "offer-title grey-text d-block">{{ item.location }}</span>
+								<span class = "offer-title grey-text d-block">{{ item.title }}</span>
 								
 								{% for i in '0123456789'|make_list %}
 									{% if  forloop.counter <= item.rating %}
@@ -177,7 +178,7 @@
 								<div class="offer-price-details">
 									<div class = "offer-price-wrap">
 										<span class = "title-small grey-text">From</span>	
-										<span class = "offer-price">€{{ item.pricing }}</span>	
+										<span class = "offer-price">€{{ item.cost }}</span>	
 									</div>
 									<div class = "offer-details">
 										<a class="offer-btn" href = "offers/{{item.id}}">Details</a>
@@ -187,6 +188,7 @@
 							
 						</div>
 					</div>	
+					{% endif %}
 					{% endfor %}
 					
 				</div>
@@ -261,9 +263,10 @@
 				</div>
 				<div class="planners-wrap swiper plannerSwiper">
 					<div class = "offer-wrap d-flex swiper-wrapper">
-						{% for item in planners %}
+						{% for item in data %}
+						{% if item.is_special == False %}
 						<div class="planner-item swiper-slide">
-							<div style = "background-image: url(media/{{item.planner_image}});;" class="planner-gallery-image planner-popup backgr-position bg-options">
+							<div style = "background-image: url(media/{{item.trip_image}});" class="planner-gallery-image planner-popup backgr-position bg-options">
 								
 							</div>						
 							<div class="planner-text flex-column">
@@ -294,6 +297,7 @@
 								</div>
 							</div>
 						</div>
+						{% endif %}
 						{% endfor %}
 					</div>
 				</div>

@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from diploma_page.models import Destinations, Offers, Planners
+from diploma_page.models import Destinations, Trips#Offers, Planners
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -8,11 +8,10 @@ from django.views.decorators.cache import cache_control
 from .forms import AccountCreationForm
 
 def index(request):
-    data = Offers.objects.all()
+    data = Trips.objects.all()
     dest = Destinations.objects.all()
-    planners = Planners.objects.all()
     form = registerForm(request)
-    return render(request, 'index.html', {'data': data, 'dest':dest , 'planners' : planners ,'form': form})
+    return render(request, 'index.html', {'data': data, 'dest':dest,'form': form})
 
 def registerForm(request):
     if request.method == "POST":
@@ -56,6 +55,6 @@ def blogs(request):
     return render(request, 'blog_page/index.html', {'form': form})
 
 def offer_item(request, id):
-    data = Offers.objects.get(id = id)
+    data = Trips.objects.get(id = id)
     form = registerForm(request)
     return render(request, 'offer-page/index.html', {'data': data, 'form': form})

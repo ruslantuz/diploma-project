@@ -21,7 +21,7 @@
                     <div class="offer-head-left">
                         <div class="offer-title black-text">
                             <h1 class = "title-big">
-                                {{ data.location }}
+                                {{ data.title }}
                             </h1>
                         </div>
                         <div class = "offer-rate">
@@ -37,11 +37,11 @@
                     </div>
                     <div class = "offer-price-wrap">
                         <span class = "title-small grey-text">From</span>	
-                        <span class = "offer-price">€{{data.pricing}}</span>	
+                        <span class = "offer-price">€{{data.cost}}</span>	
                     </div>
                 </div>
                 <div class="offer-info-content">
-                    <img src="../media/{{data.offer_image}}" alt="offer1" class="offer-image-block">
+                    <img src="../media/{{data.trip_image}}" alt="offer1" class="offer-image-block">
                     <div class="offer-info-content-right">
                         <span class = "offer-description d-block">
                             {{data.description}}
