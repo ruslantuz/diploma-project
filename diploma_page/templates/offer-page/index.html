@@ -48,7 +48,9 @@
                         </span>
                         
                         <div class="offer-form-wrap">
-                            <form class="d-flex offer-form">
+                            <form class="d-flex offer-form" method="POST">
+                                {% csrf_token %} 
+                                {{ order_form }}
                                 <div class="form-item flex-column d-flex">				
                                     <label for="person">Person</label>
                                     <input type="number" id="person" min="1">

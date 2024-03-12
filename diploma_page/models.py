@@ -30,9 +30,13 @@ class Orders(models.Model):
     check_in = models.DateField(blank=True, null=True)  
     check_out = models.DateField(blank=True, null=True)
     
-    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
+    # total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     placed_at = models.DateTimeField(auto_now_add=True) 
     status = models.CharField(max_length=50, choices=[('pending', 'Pending'), ('confirmed', 'Confirmed'), ('cancelled', 'Cancelled')], default='pending')
+    
+    @property
+    def total_price(self):
+        return self.person_count * self.trip.cost
     
     def __str__(self):
         return f"Order {self.id} - User: {self.user.username} - Trip: {self.trip.title}"
