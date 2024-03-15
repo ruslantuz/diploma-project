@@ -50,19 +50,23 @@
                         <div class="offer-form-wrap">
                             <form class="d-flex offer-form" method="POST">
                                 {% csrf_token %} 
-                                {{ order_form }}
+                                <!-- {{ order_form }} -->
+                                {{ order_form.order }}
+                                <!-- {{ order_form.trip }} -->
                                 <div class="form-item flex-column d-flex">				
                                     <label for="person">Person</label>
-                                    <input type="number" id="person" min="1">
-            
+                                    <!-- <input type="number" id="person" min="1"> -->
+                                    {{ order_form.person_count }}
                                 </div>
                                 <div class="form-item flex-column d-flex">				
                                     <label for="check-in">Check in</label>
-                                    <input type="date" id="check-in">
+                                    <!-- <input type="date" id="check-in"> -->
+                                    {{ order_form.check_in }}
                                 </div>
                                 <div class="form-item flex-column d-flex">				
                                     <label for="check-out">Check out</label>
-                                    <input type="date" id="check-out">
+                                    <!-- <input type="date" id="check-out"> -->
+                                    {{ order_form.check_out }}
                                 </div>
                                 <div class="book-btn d-flex">
                                     <input class = "book-btn pointer" type="submit" value="Book Now">

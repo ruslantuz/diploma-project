@@ -26,7 +26,14 @@
                 </div>
                 <div class="user-info-panel info-panel-right">
                     <div class="order-list">
-                        <span class="title-big grey-text order-empty d-block">Your orders will be here</span>
+                        {% if orders %}
+                            {% for order in orders %}
+                                <div>{{order}}</div>
+                            {% endfor %}
+                        {% else %}
+                            <span class="title-big grey-text order-empty d-block">Your orders will be here</span>
+                        {% endif %}
+
                     </div>
                 </div>
             </div>
