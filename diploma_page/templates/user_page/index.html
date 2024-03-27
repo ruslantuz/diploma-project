@@ -27,9 +27,50 @@
                 <div class="user-info-panel info-panel-right">
                     <div class="order-list">
                         {% if orders %}
+                        
+                        <span class="title-big black-text d-block">Orders info:</span>
+                        <!-- <table class="order-table">
+                            <tr class="title-small">
+                                <th>Id</th>
+                                <th>Trip</th>
+                                <th>Total price</th>
+                                <th>People</th>
+                                <th>Check In</th>
+                                <th>Check out</th>
+                                <th>Order date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr> -->
                             {% for order in orders %}
-                                <div>{{order}}</div>
+                                <!-- <tr class="title-small">
+                                    <td>{{order.id}}</td>
+                                    <td>{{order.trip}}</td>
+                                    <td>{{order.total_price}}</td>
+                                    <td>{{order.person_count}}</td>
+                                    <td>{{order.check_in}}</td>
+                                    <td>{{order.check_out}}</td>
+                                    <td>{{order.placed_at}}</td>
+                                    <td>{{order.status}}</td>
+                                    <td><button>Delete</button>
+                                        
+                                    </td>
+                                </tr> -->
+                                
+                                <!-- !!!!!!!!!!! Custom form with hidden field for storing id !!!!!!!!!! -->
+                                <div class="order-wrap">
+                                    <div class="order-id-wrap">
+                                        <span>Order id: {{order.id}}</span>
+                                    </div>
+                                    <div class="order-info-wrap">
+                                        <img src="../media/{{order.trip.trip_image}}" alt="tripimg" width="20%">
+                                        <div>
+                                            Total price: {{order.total_price}}                                            
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div>{{order}}</div> -->
                             {% endfor %}
+                        </table>
                         {% else %}
                             <span class="title-big grey-text order-empty d-block">Your orders will be here</span>
                         {% endif %}

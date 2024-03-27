@@ -1,1 +1,11 @@
 header{background-color:var(--secondary-color);position:relative}.head-wrapper{padding-top:15px!important;padding-bottom:15px!important}.user-info-panel{box-shadow:5px 5px 30px rgba(0,0,0,.1);padding:30px}.order-list{padding-top:140px;padding-bottom:140px}.info-wrap{display:flex;flex-direction:column;margin-top:40px;margin-bottom:40px;gap:20px}.info-panel-right{flex:1}.order-empty{text-align:center}.user-caption{font-size:36px!important;margin-bottom:20px}@media only screen and (min-width:1120px){.info-wrap{flex-direction:row}}
+
+/* .order-table{
+    text-align: left;
+}
+.order-table tr>*{
+    padding: 10px 20px;
+} */
+.order-wrap{
+    margin: 20px 0;
+}

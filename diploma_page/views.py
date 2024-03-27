@@ -12,7 +12,9 @@ def index(request):
     data = Trips.objects.all()
     dest = Destinations.objects.all()
     form = registerForm(request)
-    return render(request, 'index.html', {'data': data, 'dest':dest,'form': form})
+    order_form = createOrderForm(request, data)
+
+    return render(request, 'index.html', {'data': data, 'dest':dest,'form': form, 'order_form':order_form })
 
 def registerForm(request):
     if request.method == "POST" and 'login' in request.POST:
@@ -58,45 +60,29 @@ def blogs(request):
 
 def offer_item(request, id):
     data = Trips.objects.get(id = id)
+    order_form = createOrderForm(request, data)
+    form = registerForm(request)    
+    return render(request, 'offer-page/index.html', {'data': data, 'form': form, 'order_form': order_form})
+    
+def createOrderForm(request, data):
     if request.method == 'POST':
-        print("if request.method == 'POST':")
         if 'order' in request.POST:
-            print("if 'order' in request.POST:")
             order_form = OrderForm(request.POST)
-            print("order_form = OrderForm(request.POST)")
-            print(order_form.is_valid())
             if order_form.is_valid():
                 print("if order_form.is_valid():")
                 # Save the order
                 order = order_form.save(commit=False)
                 order.user = request.user
-                order.trip = data
-
+                try:
+                    order.trip                        
+                except:
+                    order.trip = data
+                # ?????????????????????'
+                    
                 order.save()
                 # Optionally, add a success message
                 messages.success(request, "Order placed successfully!")
                 return HttpResponseRedirect('/')  # Redirect after successful order placement
-    else:
-        order_form = OrderForm()
-    
-    # order_form = createOrderForm(request, data)
-    form = registerForm(request)    
-    return render(request, 'offer-page/index.html', {'data': data, 'form': form, 'order_form': order_form})
-    
-def createOrderForm(request, data):
-    if request.method == 'POST' and 'order' in request.POST:
-        order_form = OrderForm(request.POST)
-        print(data)
-        print(order_form.is_valid())
-        if order_form.is_valid():            
-            # Save the order
-            order = order_form.save(commit=False)
-            order.user = request.user
-            order.trip = data
-            order.save()
-            # Optionally, add a success message
-            messages.success(request, "Order placed successfully!")
-            return HttpResponseRedirect('/')
     else:
         order_form = OrderForm()
     return order_form
