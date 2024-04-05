@@ -8,4 +8,13 @@ header{background-color:var(--secondary-color);position:relative}.head-wrapper{p
 } */
 .order-wrap{
     margin: 20px 0;
+    flex-direction: row;
+    gap: 16px;
+}
+.order-img-wrap{
+    width: 25%;
+}
+.order-img-wrap img{
+    height: 100%;
+    width: 100%;
 }

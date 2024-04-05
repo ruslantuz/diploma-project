@@ -1,0 +1,26 @@
+header{background-color:var(--secondary-color)!important;position:relative}
+.offers-list-wrap{
+    padding: 200px 40px;
+    flex-direction: column;
+}
+.offer-item{
+    margin-bottom: 32px;
+}
+@media only screen and (min-width:800px)  {
+    .offers-list-wrap{
+        padding: 200px 40px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 32px;
+    }
+    .offer-item{
+        width: auto ;
+        height: auto;
+        flex: 1 0 21%; 
+        align-self: stretch;
+    }
+    .offer-title {
+        height: auto;
+        flex: 1;
+    }
+}

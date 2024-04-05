@@ -63,6 +63,13 @@ def offer_item(request, id):
     order_form = createOrderForm(request, data)
     form = registerForm(request)    
     return render(request, 'offer-page/index.html', {'data': data, 'form': form, 'order_form': order_form})
+
+def offers(request):
+    data = Trips.objects.all()
+    form = registerForm(request)
+    return render(request, 'offers/index.html', {'data': data,'form': form})
+
+
     
 def createOrderForm(request, data):
     if request.method == 'POST':

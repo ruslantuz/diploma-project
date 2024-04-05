@@ -2,13 +2,9 @@
 
 {% extends '../base.html' %}
 {% block head %} 
-{% load static %}
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% load static %}   
     <title>Your Account</title>
     <link rel="stylesheet" href="{% static 'user_page/styles/style.css' %}">
-</head>
 {% endblock head%}
 
 
@@ -57,16 +53,33 @@
                                 </tr> -->
                                 
                                 <!-- !!!!!!!!!!! Custom form with hidden field for storing id !!!!!!!!!! -->
-                                <div class="order-wrap">
-                                    <div class="order-id-wrap">
-                                        <span>Order id: {{order.id}}</span>
+                                <div class="order-wrap d-flex">
+                                    <div class="order-img-wrap">
+                                        <img src="../media/{{order.trip.trip_image}}" alt="tripimg" width="20%">
                                     </div>
                                     <div class="order-info-wrap">
-                                        <img src="../media/{{order.trip.trip_image}}" alt="tripimg" width="20%">
                                         <div>
                                             Total price: {{order.total_price}}                                            
                                         </div>
+                                        <div>
+                                            Person count: {{order.person_count}}
+                                        </div>
+                                        <div>
+                                            Check in: {{order.check_in}}
+                                        </div>
+                                        <div>
+                                            Check out: {{order.check_out}}
+                                        </div>
+                                        <div>
+                                            Ordered: {{order.placed_at}}
+                                        </div>
+                                        <div>
+                                            Status: {{order.status}}
+                                        </div>                                        
                                     </div>
+                                    <form action="">
+                                        <button type="submit">Delete</button>
+                                    </form>
                                 </div>
                                 <!-- <div>{{order}}</div> -->
                             {% endfor %}
