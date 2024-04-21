@@ -29,6 +29,9 @@ urlpatterns = [
     path('login/', Login, name='login'),
     path('login_user', LoginUser, name='login_user'),
     path('logout/', LogOut, name='logout'),    
+    path('login/cancel_order', CancelOrder, name='cancel_order'),    
+    path('login/confirm_order', ConfirmOrder, name='confirm_order'),    
+
     re_path(r'^media/(?P<path>.*)$', serve,{'document_root': settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

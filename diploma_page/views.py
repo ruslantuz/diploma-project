@@ -34,8 +34,11 @@ def registerForm(request):
 def Login(request):
     if request.user.is_authenticated:
         user = request.user
-        orders = Orders.objects.filter(user = user.id)
-        return render(request, 'user_page/index.html', {'user':user, 'orders':orders})
+        orders = Orders.objects.filter(status = "pending" or "confirmed").filter(user = user.id)
+        orders = orders.order_by('-status')
+        
+        admin_orders = Orders.objects.filter(status = "pending")
+        return render(request, 'user_page/index.html', {'user':user, 'orders':orders, 'admin_orders':admin_orders})
 
 def LoginUser(request):
     if request.method == "POST":
@@ -68,8 +71,6 @@ def offers(request):
     data = Trips.objects.all()
     form = registerForm(request)
     return render(request, 'offers/index.html', {'data': data,'form': form})
-
-
     
 def createOrderForm(request, data):
     if request.method == 'POST':
@@ -93,3 +94,16 @@ def createOrderForm(request, data):
     else:
         order_form = OrderForm()
     return order_form
+
+
+def CancelOrder(request):
+    if request.method == "POST":
+        id = request.POST.get('id') 
+        order = Orders.objects.filter(id=id).update(status = "cancelled")
+        return HttpResponseRedirect("/login")
+
+def ConfirmOrder(request):
+    if request.method == "POST":
+        id = request.POST.get('id') 
+        order = Orders.objects.filter(id=id).update(status = "confirmed")
+        return HttpResponseRedirect("/login")

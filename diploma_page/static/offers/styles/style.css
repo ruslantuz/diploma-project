@@ -1,6 +1,6 @@
 header{background-color:var(--secondary-color)!important;position:relative}
 .offers-list-wrap{
-    padding: 200px 40px;
+    padding: 80px 20px;
     flex-direction: column;
 }
 .offer-item{
@@ -8,7 +8,6 @@ header{background-color:var(--secondary-color)!important;position:relative}
 }
 @media only screen and (min-width:800px)  {
     .offers-list-wrap{
-        padding: 200px 40px;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 32px;
@@ -22,5 +21,10 @@ header{background-color:var(--secondary-color)!important;position:relative}
     .offer-title {
         height: auto;
         flex: 1;
+    }
+}
+@media only screen and (min-width: 1120px){
+    .offers-list-wrap{
+        margin: 100px auto;
     }
 }

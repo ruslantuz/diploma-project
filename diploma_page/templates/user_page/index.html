@@ -9,7 +9,6 @@
 
 
 {% block content %}
-
     <section>
         <div class="section-wrap">
             <h1 class="title-big black-text"><i class="fa-solid fa-user"></i> My Travellian Account</h1>
@@ -22,75 +21,188 @@
                 </div>
                 <div class="user-info-panel info-panel-right">
                     <div class="order-list">
-                        {% if orders %}
-                        
-                        <span class="title-big black-text d-block">Orders info:</span>
-                        <!-- <table class="order-table">
-                            <tr class="title-small">
-                                <th>Id</th>
-                                <th>Trip</th>
-                                <th>Total price</th>
-                                <th>People</th>
-                                <th>Check In</th>
-                                <th>Check out</th>
-                                <th>Order date</th>
-                                <th>Status</th>
-                                <th>Actions</th>
-                            </tr> -->
-                            {% for order in orders %}
-                                <!-- <tr class="title-small">
-                                    <td>{{order.id}}</td>
-                                    <td>{{order.trip}}</td>
-                                    <td>{{order.total_price}}</td>
-                                    <td>{{order.person_count}}</td>
-                                    <td>{{order.check_in}}</td>
-                                    <td>{{order.check_out}}</td>
-                                    <td>{{order.placed_at}}</td>
-                                    <td>{{order.status}}</td>
-                                    <td><button>Delete</button>
-                                        
-                                    </td>
-                                </tr> -->
-                                
-                                <!-- !!!!!!!!!!! Custom form with hidden field for storing id !!!!!!!!!! -->
+                        {% if user.is_superuser %}
+                            {% if admin_orders %}            
+                            <div class="admin-orders-wrap">
+                                <span class="title-big black-text d-block">Manage pending orders:</span>
+                                {% for order in admin_orders %}
                                 <div class="order-wrap d-flex">
                                     <div class="order-img-wrap">
                                         <img src="../media/{{order.trip.trip_image}}" alt="tripimg" width="20%">
                                     </div>
-                                    <div class="order-info-wrap">
-                                        <div>
-                                            Total price: {{order.total_price}}                                            
+                                    <div class="order-info-wrap">                        
+                                        <span class="title-small">{{order.trip.title}}</span>
+                                        <div class="order-info-block d-flex">
+                                            <div class="info-caption">
+                                                Order ID: 
+                                            </div>
+                                            <div class="info-data">
+                                                {{order.id}}  
+                                            </div>                                          
                                         </div>
-                                        <div>
-                                            Person count: {{order.person_count}}
+                                        <div class="order-info-block d-flex">
+                                            <div class="info-caption">
+                                                Total price: 
+                                            </div>
+                                            <div class="info-data">
+                                                {{order.total_price}}  
+                                            </div>                                          
                                         </div>
-                                        <div>
-                                            Check in: {{order.check_in}}
+                                        <div class="order-info-block d-flex">
+                                            <div class="info-caption">
+                                                Person count: 
+                                            </div>
+                                            <div class="info-data">
+                                                {{order.person_count}} 
+                                            </div>                                          
                                         </div>
-                                        <div>
-                                            Check out: {{order.check_out}}
+                                        <div class="order-info-block d-flex">
+                                            <div class="info-caption">
+                                                Check in:
+                                            </div>
+                                            <div class="info-data">
+                                                {{order.check_in}}
+                                            </div>                                          
                                         </div>
-                                        <div>
-                                            Ordered: {{order.placed_at}}
+                                        <div class="order-info-block d-flex">
+                                            <div class="info-caption">
+                                                Check out: 
+                                            </div>
+                                            <div class="info-data">
+                                                {{order.check_out}} 
+                                            </div>                                          
                                         </div>
-                                        <div>
-                                            Status: {{order.status}}
+                                        <div class="order-info-block d-flex">
+                                            <div class="info-caption">
+                                                Ordering date:  
+                                            </div>
+                                            <div class="info-data">
+                                                {{order.placed_at}}
+                                            </div>                                                
+                                        </div>
+                                        <div class="order-info-block d-flex">
+                                            <div class="info-caption">
+                                                User:
+                                            </div>
+                                            <div class="info-data">
+                                                {{order.user}}
+                                            </div>                                                  
                                         </div>                                        
                                     </div>
-                                    <form action="">
-                                        <button type="submit">Delete</button>
-                                    </form>
+                                    <div class="admin-order-forms">
+                                        <form class="order-status-form" method="POST" action="cancel_order"> 
+                                            {% csrf_token %} 
+                                            <input type="hidden" name="id" value="{{order.id}}">
+                                            <button class="status-order-btn title-small" type="submit">
+                                                Cancel
+                                            </button>
+                                        </form>
+                                        <form class="order-status-form" method="POST" action="confirm_order"> 
+                                            {% csrf_token %} 
+                                            <input type="hidden" name="id" value="{{order.id}}">
+                                            <button class="status-order-btn title-small" type="submit">
+                                                Confirm
+                                            </button>
+                                        </form>
+                                    </div>
                                 </div>
-                                <!-- <div>{{order}}</div> -->
-                            {% endfor %}
-                        </table>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <span class="title-big grey-text order-empty d-block">No pending orders</span>
+                            {% endif %}
                         {% else %}
-                            <span class="title-big grey-text order-empty d-block">Your orders will be here</span>
-                        {% endif %}
+                            {% if orders %}                            
+                                <span class="title-big black-text d-block">Orders info:</span>
+                                {% for order in orders %}
+                                    {% if order.status != "cancelled" %}
+                                    <div class="order-wrap d-flex">
+                                        <div class="order-img-wrap">
+                                            <img src="../media/{{order.trip.trip_image}}" alt="tripimg" width="20%">
+                                        </div>
+                                        <div class="order-info-wrap">
+                                            
+                                            <span class="title-small">{{order.trip.title}}</span>
+                                            <div class="order-info-block d-flex">
+                                                <div class="info-caption">
+                                                    Order ID: 
+                                                </div>
+                                                <div class="info-data">
+                                                    {{order.id}}  
+                                                </div>                                          
+                                            </div>
+                                            <div class="order-info-block d-flex">
+                                                <div class="info-caption">
+                                                    Total price: 
+                                                </div>
+                                                <div class="info-data">
+                                                    {{order.total_price}}  
+                                                </div>                                          
+                                            </div>
+                                            <div class="order-info-block d-flex">
+                                                <div class="info-caption">
+                                                    Person count: 
+                                                </div>
+                                                <div class="info-data">
+                                                    {{order.person_count}} 
+                                                </div>                                          
+                                            </div>
+                                            <div class="order-info-block d-flex">
+                                                <div class="info-caption">
+                                                    Check in:
+                                                </div>
+                                                <div class="info-data">
+                                                    {{order.check_in}}
+                                                </div>                                          
+                                            </div>
+                                            <div class="order-info-block d-flex">
+                                                <div class="info-caption">
+                                                    Check out: 
+                                                </div>
+                                                <div class="info-data">
+                                                    {{order.check_out}} 
+                                                </div>                                          
+                                            </div>
+                                            <div class="order-info-block d-flex">
+                                                <div class="info-caption">
+                                                    Ordering date:  
+                                                </div>
+                                                <div class="info-data">
+                                                    {{order.placed_at}}
+                                                </div>                                                
+                                            </div>
+                                            <div class="order-info-block d-flex">
+                                                <div class="info-caption">
+                                                    Status:
+                                                </div>
+                                                <div class="info-data">
+                                                    {{order.status}}
+                                                </div>                                                  
+                                            </div>                                        
+                                        </div>
+                                        <form class="order-status-form" method="POST" action="cancel_order"> 
+                                            {% csrf_token %} 
+                                            <input type="hidden" name="id" value="{{order.id}}">
+                                            
+                                            <button class="status-order-btn title-small" type="submit">
+                                                Cancel
+                                            </button>
+                                            
+                                        </form>
 
+                                    </div>
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <span class="title-big grey-text order-empty d-block">Your orders will be here</span>
+                            {% endif %}
+                        {% endif %}
                     </div>
                 </div>
+
             </div>
+            
+
         </div>
 
     </section>
