@@ -368,7 +368,7 @@
 			</div>
 			<div class="swiper reviewsSwiper">
 				<div class="reviews-wrap swiper-wrapper">
-					<div id = "firstClient" class="review-block flex-column swiper-slide">
+					<!-- <div id = "firstClient" class="review-block flex-column swiper-slide">
 						<div class="review-avatar position-absolute backgr-position avatar1 bg-options"></div>
 						<span class = "normal-text d-block grey-text">
 							I recently booked a trip through this agency, and it exceeded all my expectations! The website was user-friendly, making it easy to explore different destinations and find the perfect package. From the moment I inquired to the end of the trip, the customer service was exceptional. Our tour guide was knowledgeable, and the itinerary was well-planned. I highly recommend this agency to anyone looking for a seamless and unforgettable travel experience!					</span>
@@ -397,39 +397,33 @@
 								Accountant
 							</span>
 						</div>
-					</div>
+					</div> -->
+					{% for item in reviews %}
 					<div class="review-block flex-column swiper-slide">
-						<div class="review-avatar position-absolute backgr-position avatar2 bg-options"></div>
+						<div style="background-image: url(media/{{item.avatar}});" class="review-avatar position-absolute backgr-position bg-options"></div>
 						<span class = "normal-text  d-block grey-text">
-							I stumbled upon this trip agency website while planning my vacation, and it turned out to be a fantastic find! The booking process was straightforward, and they offered a variety of tours within my budget. The website provided detailed information about each destination, making it easy for me to choose. The best part was the amazing deals they offered. I got more value for my money than I expected. I'm already thinking about my next adventure with this agency!
+							{{item.text}}
 						</span>
-						<div class="review-rate">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-								<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
-							</svg>
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-								<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
-							</svg>
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-								<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
-							</svg>
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-								<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
-							</svg>
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
-								<path d="M12 2.5L15.09 8.76L22 9.77L17 14.64L18.18 21.52L12 18.27L5.82 21.52L7 14.64L2 9.77L8.91 8.76L12 2.5Z" fill="#FFC107"/>
-							</svg>
+						<div class="review-rate">								
+							{% for i in '0123456789'|make_list %}
+								{% if  forloop.counter <= item.rating %}
+								<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M12 2.00006L15.09 8.26006L22 9.27006L17 14.1401L18.18 21.0201L12 17.7701L5.82 21.0201L7 14.1401L2 9.27006L8.91 8.26006L12 2.00006Z" fill="#FFC107"/>
+								</svg>
+								{% endif %}
+							{% endfor %}
 						</div>
 						<div class="review-client">
 							<span class = "client-name d-block grey-text">
-								John Smith
+								{{item.user}}
 							</span>
 							<span class = "normal-text d-block grey-text">
-								Journalist, HWO News
+								{{item.trip}}
 							</span>
 						</div>
 					</div>
-					<div class="review-block flex-column swiper-slide">
+					{% endfor %}
+					<!-- <div class="review-block flex-column swiper-slide">
 						<div class="review-avatar position-absolute backgr-position avatar3 bg-options"></div>
 						<span class = "normal-text  d-block grey-text">
 							Thanks to this trip agency, I just had the vacation of a lifetime! The website not only showcased stunning destinations but also provided insights into local culture and activities. The booking process was smooth, and the customer support team was responsive and helpful. The tour itself was well-organized, and every detail was taken care of. I felt like I was living a dream. I can't thank the agency enough for making my vacation so memorable. I'll definitely be a repeat customer!
@@ -459,7 +453,7 @@
 								Managing Director, JTH
 							</span>
 						</div>
-					</div>
+					</div> -->
 				</div>
 			</div>
 			<div class = "arrows-wrap arrows-above" >

@@ -40,3 +40,13 @@ class Orders(models.Model):
     
     def __str__(self):
         return f"Order {self.id} - User: {self.user.username} - Trip: {self.trip.title}"
+    
+class Reviews(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    trip = models.ForeignKey(Trips, on_delete=models.CASCADE)
+
+    text = models.TextField(max_length=1000)
+    avatar = models.ImageField(upload_to="images/", default="images/default-avatar.png")
+    rating = models.IntegerField()
+
+

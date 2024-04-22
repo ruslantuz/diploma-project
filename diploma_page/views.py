@@ -1,20 +1,22 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from diploma_page.models import Destinations, Orders, Trips#Offers, Planners
+from diploma_page.models import Destinations, Orders, Reviews, Trips#Offers, Planners
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
 from .forms import AccountCreationForm, OrderForm
 from diploma_page import forms
+from django.db.models import Q
 
 def index(request):
     data = Trips.objects.all()
     dest = Destinations.objects.all()
+    reviews = Reviews.objects.all()
     form = registerForm(request)
     order_form = createOrderForm(request, data)
 
-    return render(request, 'index.html', {'data': data, 'dest':dest,'form': form, 'order_form':order_form })
+    return render(request, 'index.html', {'data': data, 'dest':dest, 'reviews' : reviews,'form': form, 'order_form':order_form,})
 
 def registerForm(request):
     if request.method == "POST" and 'login' in request.POST:
@@ -34,9 +36,9 @@ def registerForm(request):
 def Login(request):
     if request.user.is_authenticated:
         user = request.user
-        orders = Orders.objects.filter(status = "pending" or "confirmed").filter(user = user.id)
+        orders = Orders.objects.filter(Q(status = "pending") | Q(status = "confirmed")).filter(user = user.id)
         orders = orders.order_by('-status')
-        
+
         admin_orders = Orders.objects.filter(status = "pending")
         return render(request, 'user_page/index.html', {'user':user, 'orders':orders, 'admin_orders':admin_orders})
 

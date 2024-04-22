@@ -1,3 +1,4 @@
+import datetime
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext as _
 from django import forms
@@ -15,6 +16,11 @@ class AccountCreationForm(UserCreationForm):
 
 class DateInput(forms.DateInput):
     input_type = 'date'
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.attrs.setdefault('min', datetime.date.today)
+
 
 class OrderForm(ModelForm):
     order = forms.BooleanField(widget=forms.HiddenInput, initial=True)
