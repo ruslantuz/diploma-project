@@ -79,9 +79,45 @@
                         </div>
                     </div>
                 </div>
+                <form id="reivewForm" class="offer-form review-form d-flex" method="POST">
+                    <span class="title-small black-text">Write a review</span>
+                    {% csrf_token %} 
+                    {{review_form.review}} 
+
+                    {{review_form.rating.as_hidden}} 
+
+                    <div class="rating">
+                        <i class="rating-star" data-rating="5" data-target="difficulty_rating"></i>
+                        <i class="rating-star" data-rating="4" data-target="difficulty_rating"></i>
+                        <i class="rating-star" data-rating="3" data-target="difficulty_rating"></i>
+                        <i class="rating-star" data-rating="2" data-target="difficulty_rating"></i>
+                        <i class="rating-star" data-rating="1" data-target="difficulty_rating"></i>
+                    </div>
+                    
+                    {{review_form.text}}
+                    Select avatar (if not selected use default image):{{review_form.avatar}}
+
+
+                    <input class = "book-btn pointer" type="submit" value="Post review">
+                </form>
+
             </div>
         </div>
     </section>
 
     {% endblock content %}
+    {% block scripts %}
+    <script type="text/javascript">
+        $('.rating-star').on('click', function() {
+            $(this).parents('.rating').find('.rating-star').removeClass('checked');
+            $(this).addClass('checked'); 
 
+            var ratingValue = $(this).attr('data-rating');
+            console.log(ratingValue);
+            var ratingTarget = document.getElementById('id_rating');
+            ratingTarget.value = ratingValue;
+            // set the rating value to corresponding target radio input
+            $('input[name="' + ratingTarget + '"][value="' + ratingValue + '"]').val(ratingValue);
+        });                    
+        </script>
+    {% endblock scripts %}

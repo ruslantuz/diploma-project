@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext as _
 from django import forms
 from django.forms import ModelForm
-from diploma_page.models import Orders
+from diploma_page.models import Orders, Reviews
 
 class AccountCreationForm(UserCreationForm):
     login = forms.BooleanField(widget=forms.HiddenInput, initial=True)
@@ -34,3 +34,9 @@ class OrderForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(OrderForm, self).__init__(*args, **kwargs)
         self.fields['trip'].required = False
+
+class ReviewForm(ModelForm):
+    review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+    class Meta:
+        model = Reviews
+        fields = ["text", "rating", "avatar"]

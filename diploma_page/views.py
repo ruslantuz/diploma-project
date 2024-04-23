@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import cache_control
-from .forms import AccountCreationForm, OrderForm
+from .forms import AccountCreationForm, OrderForm, ReviewForm
 from diploma_page import forms
 from django.db.models import Q
 
@@ -66,8 +66,25 @@ def blogs(request):
 def offer_item(request, id):
     data = Trips.objects.get(id = id)
     order_form = createOrderForm(request, data)
+    if request.method == 'POST':
+        if 'review' in request.POST:
+            review_form = ReviewForm(request.POST)
+            if review_form.is_valid():
+                review = review_form.save(commit=False)
+                review.user = request.user
+                try:
+                    review.trip                        
+                except:
+                    review.trip = data
+                review.save()
+                # Optionally, add a success message
+                messages.success(request, "Review posted successfully!")
+                return HttpResponseRedirect('/')  # Redirect after successful order placement
+    else:
+        review_form = ReviewForm()
+    
     form = registerForm(request)    
-    return render(request, 'offer-page/index.html', {'data': data, 'form': form, 'order_form': order_form})
+    return render(request, 'offer-page/index.html', {'data': data, 'form': form, 'order_form': order_form, 'review_form':review_form})
 
 def offers(request):
     data = Trips.objects.all()
@@ -75,24 +92,21 @@ def offers(request):
     return render(request, 'offers/index.html', {'data': data,'form': form})
     
 def createOrderForm(request, data):
-    if request.method == 'POST':
-        if 'order' in request.POST:
-            order_form = OrderForm(request.POST)
-            if order_form.is_valid():
-                print("if order_form.is_valid():")
-                # Save the order
-                order = order_form.save(commit=False)
-                order.user = request.user
-                try:
-                    order.trip                        
-                except:
-                    order.trip = data
-                # ?????????????????????'
-                    
-                order.save()
-                # Optionally, add a success message
-                messages.success(request, "Order placed successfully!")
-                return HttpResponseRedirect('/')  # Redirect after successful order placement
+    if request.method == 'POST' and 'order' in request.POST:
+        order_form = OrderForm(request.POST)
+        if order_form.is_valid():
+            order = order_form.save(commit=False)
+            order.user = request.user
+            try:
+                order.trip                        
+            except:
+                order.trip = data
+            # ?????????????????????'
+                
+            order.save()
+            # Optionally, add a success message
+            messages.success(request, "Order placed successfully!")
+            return HttpResponseRedirect('/')  # Redirect after successful order placement
     else:
         order_form = OrderForm()
     return order_form

@@ -1,1 +1,41 @@
 header{background-color:var(--secondary-color)!important;position:relative}.offer-title{margin:20px 0}.offer-image-block{aspect-ratio: 1/1;}.head-wrapper{padding-top:15px!important;padding-bottom:15px!important}.offer-info-head{margin-bottom:20px}@media only screen and (max-width:380px){.book-btn{font-size:24px;width:min-content;padding:5px 5px!important}.offer-info-content{display:flex!important;flex-direction:column}}@media only screen and (max-width:1122px){.offer-info-content .offer-image-block{width:50%;height:fit-content;}}@media only screen and (min-width:720px){.offer-form{flex-direction:row;gap:10px;padding:20px 0}.section-wrap{padding-top:120px!important}}@media only screen and (min-width:1120px){.offer-info-content,.offer-info-head{grid-auto-flow:column}.offer-price-wrap{justify-content:end}.offer-info{margin-bottom:40px!important}}.offer-image-block{object-fit:cover;object-position:50% 20%;max-height:600px}.offer-info-content .offer-image-block{border-radius:26px;width:100%;height:fit-content}.offer-info-content,.offer-info-head{display:grid;gap:30px}.offer-form{flex-direction:column;gap:20px;padding:20px 0;border-radius:40px}.form-item{width:100%}.offer-form-btn{width:100%}.book-btn{align-self:flex-end;width:max-content;padding:5px 15px;border-radius:10px}.book-arrow{align-self:center;justify-self:end}.form-item input{border-bottom:1px solid #000;padding-bottom:10px;font-family:var(--page-font1);font-size:14px}.offer-info-content-right{display:flex;flex-direction:column;gap:40px}.offer-form,.offer-info-content-right{box-shadow:5px 5px 30px rgba(0,0,0,.1);padding:30px}.offer-description{flex:1}
+.review-form{
+    margin-top: 40px;
+}
+
+.rating {
+    overflow: hidden;
+    display: table;
+    font-size: 20px;
+    color: #FFCA00;
+    font-style: normal;
+    align-self: flex-start;
+  }
+  
+  .rating-star {
+    padding: 0 5px;
+    margin: 0;
+    cursor: pointer;
+    display: block;
+    float: right;
+  }
+  
+  .rating-star:after {
+    position: relative;
+    font-family: FontAwesome;
+    content: '\f006';
+  }
+  
+  .rating-star.checked ~ .rating-star:after,
+  .rating-star.checked:after {
+    content: '\f005';
+  }
+  
+  .rating:hover .rating-star:after {
+    content: '\f006';
+  }
+  
+  .rating-star:hover ~ .rating-star:after,
+  .rating-star:hover:after {
+    content: '\f005' !important;
+  }
