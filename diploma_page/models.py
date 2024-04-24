@@ -58,4 +58,10 @@ class Reviews(models.Model):
     avatar = models.ImageField(upload_to="images/", default="images/default-avatar.png")
     rating = models.IntegerField()
 
+class Blog(models.Model):
+    title = models.CharField(max_length=100)
+    text = models.TextField(max_length=3000)
+    image = models.ImageField(null = True, blank=True, upload_to="images/")
+
+ 
 

@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from diploma_page.models import Destinations, Orders, Reviews, Trips#Offers, Planners
+from diploma_page.models import Blog, Destinations, Orders, Reviews, Trips#Offers, Planners
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -12,11 +12,12 @@ from django.db.models import Q
 def index(request):
     data = Trips.objects.all()
     dest = Destinations.objects.all()
+    blog = Blog.objects.order_by('?')[0]
     reviews = Reviews.objects.all()
     form = registerForm(request)
     order_form = createOrderForm(request, data)
-    
-    return render(request, 'index.html', {'data': data, 'dest':dest, 'reviews' : reviews,'form': form, 'order_form':order_form,})
+
+    return render(request, 'index.html', {'data': data, 'dest':dest, 'reviews' : reviews,'form': form, 'order_form':order_form,'blog':blog})
 
 def registerForm(request):
     if request.method == "POST" and 'login' in request.POST:
@@ -59,9 +60,10 @@ def LogOut(request):
     request.user = None
     return HttpResponseRedirect("/")
 
-def blogs(request):
+def blogs(request, id):
     form = registerForm(request)
-    return render(request, 'blog_page/index.html', {'form': form})
+    blog = Blog.objects.get(id = id)
+    return render(request, 'blog_page/index.html', {'form': form, 'blog':blog})
 
 def offer_item(request, id):
     data = Trips.objects.get(id = id)
@@ -78,7 +80,7 @@ def offer_item(request, id):
                     review.trip = data
                 review.save()
                 # Optionally, add a success message
-                messages.success(request, "Review posted successfully!")
+                messages.success(request, "Review posted successfully!", extra_tags="review_success")
                 return HttpResponseRedirect('/')  # Redirect after successful order placement
     else:
         review_form = ReviewForm()
@@ -101,7 +103,6 @@ def createOrderForm(request, data):
                 order.trip                        
             except:
                 order.trip = data
-            # ?????????????????????'
                 
             order.save()
             # Optionally, add a success message

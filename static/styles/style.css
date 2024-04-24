@@ -610,9 +610,6 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .blog-image-block {
     height: 314px;
     border-radius: 26px;
-    background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, .2)), to(rgba(0, 0, 0, .2))), url(../images/blog_img.webp), #d3d3d3 no-repeat;
-    background: -o-linear-gradient(bottom, rgba(0, 0, 0, .2) 0, rgba(0, 0, 0, .2) 100%), url(../images/blog_img.webp), #d3d3d3 no-repeat;
-    background: linear-gradient(0deg, rgba(0, 0, 0, .2) 0, rgba(0, 0, 0, .2) 100%), url(../images/blog_img.webp), #d3d3d3 no-repeat;
     background-size: 150%;
     background-repeat: no-repeat;
     margin-bottom: 32px

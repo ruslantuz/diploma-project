@@ -222,22 +222,22 @@
 				</div>
 			</div>
 			<div class="blog-post-wrap d-flex">
-				<div class = "blog-image-block backgr-position">	
+				<div style = "background-image: url(media/{{blog.image}});" class = "blog-image-block backgr-position">	
 						
 				</div>
 				<div class="blog-text d-flex flex-column">
 					<div class="blog-title black-text">
 						<span class="d-block">
-							Beautiful Italy<br>
-							Let’s travel
+							{{blog.title}}
 						</span>
 
 					</div>
 					<span class = "blog-description d-block black-text normal-text">
-						Italy, a land where history, art, and natural beauty intertwine, beckons travelers with its timeless charm. From the rolling hills of Tuscany to the ancient ruins of Rome, each corner of this Mediterranean jewel tells a story of a rich and diverse cultural tapestry. Italy's cultural heritage is deeply embedded in its daily life. From the passionate operas in Verona to the lively street festivals in Palermo, you'll find a nation that celebrates its traditions with pride. The ruins of Pompeii whisper tales of ancient civilizations, and the leaning tower of Pisa stands as a testament to architectural marvels.Beyond the monuments and landscapes, it's the warmth of the Italian people that leaves an indelible mark.
+						{{blog.text|truncatewords:180}}
+						<!-- Italy, a land where history, art, and natural beauty intertwine, beckons travelers with its timeless charm. From the rolling hills of Tuscany to the ancient ruins of Rome, each corner of this Mediterranean jewel tells a story of a rich and diverse cultural tapestry. Italy's cultural heritage is deeply embedded in its daily life. From the passionate operas in Verona to the lively street festivals in Palermo, you'll find a nation that celebrates its traditions with pride. The ruins of Pompeii whisper tales of ancient civilizations, and the leaning tower of Pisa stands as a testament to architectural marvels.Beyond the monuments and landscapes, it's the warmth of the Italian people that leaves an indelible mark. -->
 					</span>
 					<div class="blog-read-more d-flex  pointer">
-						<a href="blog/" class = "blog-read-more-text d-block">
+						<a href="blog/{{blog.id}}" class = "blog-read-more-text d-block">
 							Read More
 						</a>
 						<svg xmlns="http://www.w3.org/2000/svg" width="28" height="16" viewBox="0 0 28 16" fill="none">

@@ -249,6 +249,14 @@
 					confirmButtonText: 'Close',
 				})
 			</script>
+		{% elif 'success' in message.tags and 'review_success' in message.tags %}
+		<script>
+			Swal.fire({
+				title: 'Review posted!',
+				text: '{{message}}',
+				confirmButtonText: 'Close',
+			})
+		</script>
 		{% endif %}
 	{% endfor %}
 
