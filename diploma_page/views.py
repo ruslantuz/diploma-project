@@ -15,7 +15,7 @@ def index(request):
     reviews = Reviews.objects.all()
     form = registerForm(request)
     order_form = createOrderForm(request, data)
-
+    
     return render(request, 'index.html', {'data': data, 'dest':dest, 'reviews' : reviews,'form': form, 'order_form':order_form,})
 
 def registerForm(request):
