@@ -34,6 +34,8 @@
                             {% endif %}
                         {% endfor %}					
                         </div>
+                        <a class="list-item black-text" href="#trip-reviews">({{ reviews.count }} Reviews)</a>
+
                     </div>
                     <div class = "offer-price-wrap">
                         <span class = "title-small grey-text">From</span>	
@@ -100,7 +102,38 @@
 
                     <input class = "book-btn pointer" type="submit" value="Post review">
                 </form>
-
+                <div id = "trip-reviews" class="trip-reviews-wrap">
+                    <span class="title-big black-text">Reviews:</span>
+                    <div class="trip-reviews">
+                      
+                            {% for item in reviews %}
+                            <div class="review-wrap d-flex">      
+                                <div class="review-client">
+                                    <div style="background-image: url(../media/{{item.avatar}});" class="review-avatar backgr-position bg-options"></div>
+                                    <span class = "client-name d-block grey-text">
+                                        {{item.user}}
+                                    </span>
+                                </div>
+                                <div class="review-content">
+                                    <div class="review-rate">								
+                                        {% for i in '0123456789'|make_list %}
+                                            {% if  forloop.counter <= item.rating %}
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M12 2.00006L15.09 8.26006L22 9.27006L17 14.1401L18.18 21.0201L12 17.7701L5.82 21.0201L7 14.1401L2 9.27006L8.91 8.26006L12 2.00006Z" fill="#FFC107"/>
+                                            </svg>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                    <span class = "normal-text d-block grey-text">
+                                        {{item.text}}
+                                    </span>
+                                </div>
+                            </div>    
+                            {% endfor %}
+                
+                    </div>
+                    
+                </div>
             </div>
         </div>
     </section>

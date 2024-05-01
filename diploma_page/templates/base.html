@@ -257,6 +257,14 @@
 				confirmButtonText: 'Close',
 			})
 		</script>
+		{% elif 'error' in message.tags and 'not_logged' in message.tags %}
+		<script>
+			Swal.fire({
+				title: 'Request failed!',
+				text: '{{message}}',
+				confirmButtonText: 'Close',
+			})
+		</script>
 		{% endif %}
 	{% endfor %}
 

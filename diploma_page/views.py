@@ -14,9 +14,14 @@ def index(request):
     dest = Destinations.objects.all()
     blog = Blog.objects.order_by('?')[0]
     reviews = Reviews.objects.all()
-    form = registerForm(request)
-    order_form = createOrderForm(request, data)
+    if request.user.is_anonymous:
+        order_form = OrderForm()
+        if request.method == 'POST' and 'login' not in request.POST:
+            messages.error(request, "You are not logged in!", extra_tags="not_logged")
+    else:
+        order_form = createOrderForm(request, data)
 
+    form = registerForm(request)
     return render(request, 'index.html', {'data': data, 'dest':dest, 'reviews' : reviews,'form': form, 'order_form':order_form,'blog':blog})
 
 def registerForm(request):
@@ -67,26 +72,35 @@ def blogs(request, id):
 
 def offer_item(request, id):
     data = Trips.objects.get(id = id)
-    order_form = createOrderForm(request, data)
-    if request.method == 'POST':
-        if 'review' in request.POST:
-            review_form = ReviewForm(request.POST)
-            if review_form.is_valid():
-                review = review_form.save(commit=False)
-                review.user = request.user
-                try:
-                    review.trip                        
-                except:
-                    review.trip = data
-                review.save()
-                # Optionally, add a success message
-                messages.success(request, "Review posted successfully!", extra_tags="review_success")
-                return HttpResponseRedirect('/')  # Redirect after successful order placement
-    else:
-        review_form = ReviewForm()
+    reviews = Reviews.objects.filter(trip = id)
     
+    if request.user.is_anonymous:
+        order_form = OrderForm()
+        review_form = ReviewForm()
+        if request.method == 'POST' and 'login' not in request.POST:
+            messages.error(request, "You are not logged in!", extra_tags="not_logged")
+    else:
+        order_form = createOrderForm(request, data)
+        if request.method == 'POST' and request.user.is_anonymous != True:
+            if 'review' in request.POST:
+                review_form = ReviewForm(request.POST)
+                if review_form.is_valid():
+                    review = review_form.save(commit=False)
+                    review.user = request.user
+                    try:
+                        review.trip                        
+                    except:
+                        review.trip = data
+                    review.save()
+                    # Optionally, add a success message
+                    messages.success(request, "Review posted successfully!", extra_tags="review_success")
+                    return HttpResponseRedirect('/')  # Redirect after successful order placement
+        else:
+            review_form = ReviewForm()
+
+
     form = registerForm(request)    
-    return render(request, 'offer-page/index.html', {'data': data, 'form': form, 'order_form': order_form, 'review_form':review_form})
+    return render(request, 'offer-page/index.html', {'data': data, 'reviews':reviews, 'form': form, 'order_form': order_form, 'review_form':review_form})
 
 def offers(request):
     data = Trips.objects.all()

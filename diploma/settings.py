@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'diploma_page',
+    'puml_generator',
 ]
 
 MIDDLEWARE = [

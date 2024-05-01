@@ -15,7 +15,7 @@ header{background-color:var(--secondary-color)!important;position:relative}
     .offer-item{
         width: auto ;
         height: auto;
-        flex: 1 0 21%; 
+        flex: 1 1 23%; 
         align-self: stretch;
     }
     .offer-title {

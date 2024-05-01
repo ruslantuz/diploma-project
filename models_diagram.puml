@@ -1,0 +1,95 @@
+@startuml 
+
+
+
+
+class "User" as User #d6dbf4 {
+    user
+    --
+    - id (AutoField)
+    + password (CharField)
+    + last_login (DateTimeField)
+    + is_superuser (BooleanField)
+    + username (CharField)
+    + first_name (CharField)
+    + last_name (CharField)
+    + email (EmailField)
+    + is_staff (BooleanField)
+    + is_active (BooleanField)
+    + date_joined (DateTimeField)
+    # groups (ManyToManyField)
+    # user_permissions (ManyToManyField)
+    --
+}
+
+
+class "Destinations" as Destinations #d6dbf4 {
+    destinations
+    --
+    + id (BigAutoField)
+    + place (CharField)
+    + location (CharField)
+    + dest_image (ImageField)
+    --
+}
+
+
+class "Trips  " as Trips #d6dbf4 {
+    trips
+    --
+    + id (BigAutoField)
+    + title (CharField)
+    + type (CharField)
+    + cost (FloatField)
+    + days (IntegerField)
+    + description (TextField)
+    + trip_image (ImageField)
+    + is_special (BooleanField)
+    --
+}
+
+
+class "Orders  " as Orders #d6dbf4 {
+    orders
+    --
+    + id (BigAutoField)
+    ~ user (ForeignKey)
+    ~ trip (ForeignKey)
+    + person_count (IntegerField)
+    + check_in (DateField)
+    + check_out (DateField)
+    + placed_at (DateTimeField)
+    + status (CharField)
+    --
+}
+User "1" *-- "*" Orders
+Orders "*" --*  "1" Trips
+
+
+class "Reviews  " as Reviews #d6dbf4 {
+    reviews
+    --
+    + id (BigAutoField)
+    ~ user (ForeignKey)
+    ~ trip (ForeignKey)
+    + text (TextField)
+    + avatar (ImageField)
+    + rating (IntegerField)
+    --
+}
+User "1" *-- "*" Reviews
+Reviews "*" --o "1" Trips
+
+
+class "Blog  " as Blog #d6dbf4 {
+    blog
+    --
+    + id (BigAutoField)
+    + title (CharField)
+    + text (TextField)
+    + image (ImageField)
+    --
+}
+
+
+@enduml
