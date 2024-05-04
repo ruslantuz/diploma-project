@@ -10,8 +10,7 @@
     <div class = "d-flex offers-list-wrap">        
         {% for item in data %}
         <div class = "offer-item">
-            <div style="background-image: url(../media/{{item.trip_image}});" class = "offer-image-block bg-options">	
-                
+            <div style="background-image: url(../media/{{item.trip_image}});" class = "offer-image-block bg-options">	                
             </div>
             <div class = "offer-text-block">	
                 <div class = "offer-rate">
@@ -24,7 +23,6 @@
                             </svg>
                         {% endif %}
                     {% endfor %}
-
                 </div>
                 <span class = "offer-description d-block">{{ item.description }}</span>
                 <div class="www">
@@ -37,8 +35,7 @@
                             <a class="offer-btn" href = "{{item.id}}">Details</a>
                         </div>
                     </div>
-                </div>
-                
+                </div>                
             </div>
         </div>	
         {% endfor %}        

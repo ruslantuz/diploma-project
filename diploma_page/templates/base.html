@@ -257,6 +257,30 @@
 				confirmButtonText: 'Close',
 			})
 		</script>
+		{% elif 'success' in message.tags and 'order_success' in message.tags %}
+		<script>
+			Swal.fire({
+				title: 'Ordered successfully!',
+				text: '{{message}}',
+				confirmButtonText: 'Close',
+			})
+		</script>
+		{% elif 'success' in message.tags and 'login_success' in message.tags %}
+		<script>
+			Swal.fire({
+				title: 'Logged in!',
+				text: '{{message}}',
+				confirmButtonText: 'Close',
+			})
+		</script>
+		{% elif 'success' in message.tags and 'register_success' in message.tags %}
+		<script>
+			Swal.fire({
+				title: 'Registered!',
+				text: '{{message}}',
+				confirmButtonText: 'Close',
+			})
+		</script>
 		{% elif 'error' in message.tags and 'not_logged' in message.tags %}
 		<script>
 			Swal.fire({

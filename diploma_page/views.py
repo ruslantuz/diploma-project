@@ -1,6 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-from diploma_page.models import Blog, Destinations, Orders, Reviews, Trips#Offers, Planners
+from diploma_page.models import Blog, Destinations, Orders, Reviews, Trips
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
@@ -29,6 +29,7 @@ def registerForm(request):
         form = AccountCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "Registered successfully!", extra_tags="register_success")
             return HttpResponseRedirect("/")
         else:
             messages.error(request, form.errors, extra_tags="register")
@@ -55,6 +56,7 @@ def LoginUser(request):
         user = authenticate(username = username, password = password)
         if user != None:
             login(request, user)
+            messages.success(request, "Login successfully!", extra_tags="login_success")
             return HttpResponseRedirect("login/")
         else:
             messages.error(request, "Enter your data correctly.", extra_tags="login")
@@ -92,7 +94,6 @@ def offer_item(request, id):
                     except:
                         review.trip = data
                     review.save()
-                    # Optionally, add a success message
                     messages.success(request, "Review posted successfully!", extra_tags="review_success")
                     return HttpResponseRedirect('/')  # Redirect after successful order placement
         else:
@@ -119,8 +120,7 @@ def createOrderForm(request, data):
                 order.trip = data
                 
             order.save()
-            # Optionally, add a success message
-            messages.success(request, "Order placed successfully!")
+            messages.success(request, "Order placed successfully!", extra_tags="order_success")
             return HttpResponseRedirect('/')  # Redirect after successful order placement
     else:
         order_form = OrderForm()

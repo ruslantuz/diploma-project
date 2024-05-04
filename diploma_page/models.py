@@ -15,7 +15,6 @@ class Trips(models.Model):
     type = models.CharField(max_length=100)
     cost = models.FloatField(max_length=10)
     days = models.IntegerField()
-    # rating = models.IntegerField()
     description = models.TextField(max_length=400)
     trip_image = models.ImageField(null = True, blank=True, upload_to="images/")
     is_special = models.BooleanField()

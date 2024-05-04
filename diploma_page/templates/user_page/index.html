@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{% static 'user_page/styles/style.css' %}">
 {% endblock head%}
 
-
 {% block content %}
     <section>
         <div class="section-wrap">
@@ -182,14 +181,11 @@
                                         </div>
                                         <form class="order-status-form" method="POST" action="cancel_order"> 
                                             {% csrf_token %} 
-                                            <input type="hidden" name="id" value="{{order.id}}">
-                                            
+                                            <input type="hidden" name="id" value="{{order.id}}">                                            
                                             <button class="status-order-btn title-small" type="submit">
                                                 Cancel
-                                            </button>
-                                            
+                                            </button>                                            
                                         </form>
-
                                     </div>
                                     {% endif %}
                                 {% endfor %}
@@ -200,14 +196,8 @@
                     </div>
                 </div>
 
-            </div>
-            
-
+            </div>            
         </div>
-
     </section>
-
-
-
     {% endblock content%}
     

@@ -12,7 +12,6 @@
 <head>
 {% endblock head %}
 
-
 {% block content %}
     <section class="offer-info">
         <div class="section-wrap">
@@ -52,22 +51,17 @@
                         <div class="offer-form-wrap">
                             <form class="d-flex offer-form" method="POST">
                                 {% csrf_token %} 
-                                <!-- {{ order_form }} -->
                                 {{ order_form.order }}
-                                <!-- {{ order_form.trip }} -->
                                 <div class="form-item flex-column d-flex">				
                                     <label for="person">Person</label>
-                                    <!-- <input type="number" id="person" min="1"> -->
                                     {{ order_form.person_count }}
                                 </div>
                                 <div class="form-item flex-column d-flex">				
                                     <label for="check-in">Check in</label>
-                                    <!-- <input type="date" id="check-in"> -->
                                     {{ order_form.check_in }}
                                 </div>
                                 <div class="form-item flex-column d-flex">				
                                     <label for="check-out">Check out</label>
-                                    <!-- <input type="date" id="check-out"> -->
                                     {{ order_form.check_out }}
                                 </div>
                                 <div class="book-btn d-flex">
@@ -94,18 +88,14 @@
                         <i class="rating-star" data-rating="3" data-target="difficulty_rating"></i>
                         <i class="rating-star" data-rating="2" data-target="difficulty_rating"></i>
                         <i class="rating-star" data-rating="1" data-target="difficulty_rating"></i>
-                    </div>
-                    
+                    </div>                    
                     {{review_form.text}}
                     Select avatar (if not selected use default image):{{review_form.avatar}}
-
-
                     <input class = "book-btn pointer" type="submit" value="Post review">
                 </form>
                 <div id = "trip-reviews" class="trip-reviews-wrap">
                     <span class="title-big black-text">Reviews:</span>
-                    <div class="trip-reviews">
-                      
+                    <div class="trip-reviews">                      
                             {% for item in reviews %}
                             <div class="review-wrap d-flex">      
                                 <div class="review-client">
@@ -129,10 +119,8 @@
                                     </span>
                                 </div>
                             </div>    
-                            {% endfor %}
-                
-                    </div>
-                    
+                            {% endfor %}                
+                    </div>                    
                 </div>
             </div>
         </div>
@@ -149,7 +137,6 @@
             console.log(ratingValue);
             var ratingTarget = document.getElementById('id_rating');
             ratingTarget.value = ratingValue;
-            // set the rating value to corresponding target radio input
             $('input[name="' + ratingTarget + '"][value="' + ratingValue + '"]').val(ratingValue);
         });                    
         </script>
