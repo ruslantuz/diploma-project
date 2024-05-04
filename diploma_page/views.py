@@ -83,19 +83,18 @@ def offer_item(request, id):
             messages.error(request, "You are not logged in!", extra_tags="not_logged")
     else:
         order_form = createOrderForm(request, data)
-        if request.method == 'POST' and request.user.is_anonymous != True:
-            if 'review' in request.POST:
-                review_form = ReviewForm(request.POST)
-                if review_form.is_valid():
-                    review = review_form.save(commit=False)
-                    review.user = request.user
-                    try:
-                        review.trip                        
-                    except:
-                        review.trip = data
-                    review.save()
-                    messages.success(request, "Review posted successfully!", extra_tags="review_success")
-                    return HttpResponseRedirect('/')  # Redirect after successful order placement
+        if request.method == 'POST' and 'review' in request.POST:
+            review_form = ReviewForm(request.POST)
+            if review_form.is_valid():
+                review = review_form.save(commit=False)
+                review.user = request.user
+                try:
+                    review.trip                        
+                except:
+                    review.trip = data
+                review.save()
+                messages.success(request, "Review posted successfully!", extra_tags="review_success")
+                return HttpResponseRedirect('/')  
         else:
             review_form = ReviewForm()
 
@@ -109,6 +108,7 @@ def offers(request):
     return render(request, 'offers/index.html', {'data': data,'form': form})
     
 def createOrderForm(request, data):
+    order_form = OrderForm()
     if request.method == 'POST' and 'order' in request.POST:
         order_form = OrderForm(request.POST)
         if order_form.is_valid():
@@ -120,10 +120,8 @@ def createOrderForm(request, data):
                 order.trip = data
                 
             order.save()
-            messages.success(request, "Order placed successfully!", extra_tags="order_success")
-            return HttpResponseRedirect('/')  # Redirect after successful order placement
-    else:
-        order_form = OrderForm()
+            messages.success(request, "Order placed successfully! You can view it on your account page", extra_tags="order_success")            
+            order_form = OrderForm()
     return order_form
 
 
