@@ -28,7 +28,7 @@ DEBUG = True
 
 handler404 = 'diploma_page.views.custom_404'
 
-ALLOWED_HOSTS = ['diploma-production-0300.up.railway.app', '127.0.0.1', 'xen451.pythonanywhere.com']
+ALLOWED_HOSTS = ['diploma-production-0300.up.railway.app', '127.0.0.1', 'xen451.pythonanywhere.com','192.168.0.101']
 CSRF_TRUSTED_ORIGINS = ['https://diploma-production-0300.up.railway.app']
 
 # Application definition
@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'diploma_page',
-    'puml_generator',
 ]
 
 MIDDLEWARE = [
