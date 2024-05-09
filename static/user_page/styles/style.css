@@ -1,1 +1,97 @@
-header{background-color:var(--secondary-color);position:relative}.head-wrapper{padding-top:15px!important;padding-bottom:15px!important}.user-info-panel{box-shadow:5px 5px 30px rgba(0,0,0,.1);padding:30px}.order-list{padding-top:140px;padding-bottom:140px}.info-wrap{display:flex;flex-direction:column;margin-top:40px;margin-bottom:40px;gap:20px}.info-panel-right{flex:1}.order-empty{text-align:center}.user-caption{font-size:36px!important;margin-bottom:20px}@media only screen and (min-width:1120px){.info-wrap{flex-direction:row}}
+header{background-color:var(--secondary-color);position:relative}.head-wrapper{padding-top:15px!important;padding-bottom:15px!important}.user-info-panel{box-shadow:5px 5px 30px rgba(0,0,0,.1);padding:30px}
+.order-empty {
+    padding-top: 140px;
+    padding-bottom: 140px
+}
+.info-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    gap: 20px
+}
+
+.info-panel-right {
+    flex: 1
+}
+
+.order-empty {
+    text-align: center
+}
+
+.user-caption {
+    font-size: 36px !important;
+    margin-bottom: 20px
+}
+
+@media only screen and (min-width:1220px) {
+    .info-wrap {
+        flex-direction: row
+    }
+
+}
+@media only screen and (min-width:1400px) {
+    .order-info-block{
+        font-size: 24px !important;
+    }
+}
+
+.order-wrap{
+    margin: 20px 0;
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+}
+.order-img-wrap{
+    width: 25%;
+}
+.order-img-wrap img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+}
+.order-info-wrap{
+    flex: 1;
+}
+.order-info-block {
+    font-size: 18px;
+}
+.status-order-btn{
+    background-color: var(--main-page-color);
+    border-radius: 15px;
+    padding: 10px;
+    color: white;
+    font-size: 16px;
+}
+.admin-order-forms {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: center;
+}
+
+.order-info-block{
+    padding: 3px 0;
+    gap: 2px;
+}
+.order-info-block > *{
+    flex: 1;
+    text-transform: capitalize;
+}
+
+@media only screen and (max-width:530px)  {
+    .order-wrap{
+        flex-direction: column;
+    }
+    .order-wrap > *{
+        width: 100%;
+    }
+    .admin-order-forms{
+        align-items:flex-start;
+    }
+    .fa-ban{
+        font-size: 16px;
+    }
+}

@@ -28,8 +28,8 @@ DEBUG = True
 
 handler404 = 'diploma_page.views.custom_404'
 
-ALLOWED_HOSTS = ['diploma-production-0300.up.railway.app', '127.0.0.1', 'xen451.pythonanywhere.com','192.168.0.101']
-CSRF_TRUSTED_ORIGINS = ['https://diploma-production-0300.up.railway.app']
+ALLOWED_HOSTS = ['travellian-diploma.up.railway.app', '127.0.0.1', 'xen451.pythonanywhere.com','192.168.0.101']
+CSRF_TRUSTED_ORIGINS = ['https://travellian-diploma.up.railway.app']
 
 # Application definition
 

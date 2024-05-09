@@ -610,6 +610,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
 .blog-image-block {
     height: 314px;
     border-radius: 26px;
+    /* background: -webkit-gradient(linear, left bottom, left top, from(rgba(0, 0, 0, .2)), to(rgba(0, 0, 0, .2))), url(../images/blog_img.webp), #d3d3d3 no-repeat;
+    background: -o-linear-gradient(bottom, rgba(0, 0, 0, .2) 0, rgba(0, 0, 0, .2) 100%), url(../images/blog_img.webp), #d3d3d3 no-repeat;
+    background: linear-gradient(0deg, rgba(0, 0, 0, .2) 0, rgba(0, 0, 0, .2) 100%), url(../images/blog_img.webp), #d3d3d3 no-repeat; */
     background-size: 150%;
     background-repeat: no-repeat;
     margin-bottom: 32px
@@ -735,7 +738,7 @@ input[type=date]::-webkit-calendar-picker-indicator {
     display: -ms-flexbox;
     display: flex;
     padding: 20px 0;
-    gap: 12px
+    gap: 12px;
 }
 
 .price-day {
@@ -747,18 +750,18 @@ input[type=date]::-webkit-calendar-picker-indicator {
     justify-content: space-between;
     -webkit-box-align: center;
     -ms-flex-align: center;
-    align-items: center
+    align-items: center;
 }
 
 .planner-price-text {
-    text-transform: uppercase
+    text-transform: uppercase;
 }
 
 .planner-title {
     color: #172432;
     font-family: var(--page-font1);
     font-size: 28px;
-    font-weight: 600
+    font-weight: 600;
 }
 
 .gallery-images-wrap {
@@ -767,27 +770,28 @@ input[type=date]::-webkit-calendar-picker-indicator {
     -webkit-box-direction: normal;
     -ms-flex-direction: column;
     flex-direction: column; */
-    /* gap: 32px; */
 }
 
 .gallery-img1 {
-    background-image: url(../images/gallery_pics/gallery1.jpg)
+    background-image: url(../images/gallery_pics/gallery1.jpg);
 }
 
 .gallery-img2 {
-    background-image: url(../images/gallery_pics/gallery2.jpg)
+    background-image: url(../images/gallery_pics/gallery2.jpg);
 }
 
 .gallery-img3 {
-    background-image: url(../images/gallery_pics/gallery3.jpg)
+    background-image: url(../images/gallery_pics/gallery3.jpg);
 }
 
 .gallery-img4 {
-    background-image: url(../images/gallery_pics/gallery4.jpg)
+    background-image: url(../images/gallery_pics/gallery4.jpg);
 }
 
 .review-block {
-    display: none;
+    -moz-box-sizing: border-box; 
+    -webkit-box-sizing: border-box; 
+     box-sizing: border-box; 
     padding: 60px 20px 32px 20px;
     margin: 100px 0;
     border-radius: 12px;
@@ -1114,7 +1118,6 @@ footer .menu {
     }
 
     .reviews-wrap {
-        gap: 32px;
         -ms-flex-wrap: nowrap;
         flex-wrap: nowrap
     }
@@ -1289,13 +1292,15 @@ footer .menu {
     .trip-planners .inner-wrap {
         gap: 80px
     }
-
+    .planners-wrap {
+        overflow: hidden;
+    }
+    
     .gallery-images-wrap,
     .planners-wrap {
         -webkit-box-align: center;
         -ms-flex-align: center;
         align-items: center;
-        overflow: hidden;
         -ms-flex-negative: 0;
         flex-shrink: 0
     }
@@ -1305,7 +1310,7 @@ footer .menu {
     }
 
     .planner-item {
-        width: 250px
+        max-width: 250px
     }
 
     .planner-text {
@@ -1476,7 +1481,8 @@ footer .menu {
     }
 
     .hero-form .form-column,
-    .section-wrap .swiper {
+    .section-wrap .swiper:not(.reviewsSwiper)
+    {
         padding-left: var(--desktop-vertical-padding) !important;
         -webkit-box-pack: end;
         -ms-flex-pack: end;
@@ -1830,4 +1836,35 @@ summary {
 
 .swal2-confirm {
     background: var(--main-page-color) !important
+}
+
+.plannerSwiper{
+    margin: 0 !important;
+}
+
+.planner-item{
+    flex-direction: column;
+}
+
+.fullscreen-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    backdrop-filter: blur(5px);
+  }
+
+  .swiper-button-lock{
+    display: inherit !important;
+  }
+
+
+  html {
+	scroll-behavior: smooth;
 }
