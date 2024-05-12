@@ -18,19 +18,19 @@
 						{% csrf_token %} 
 						{{ order_form.order }}
 						<div class="form-item flex-column d-flex">				
-							<label for="destination">Destination</label>
+							<label for="id_trip">Destination</label>
 							{{order_form.trip}}
 						</div>
 						<div class="form-item flex-column d-flex">				
-							<label for="person">Person</label>
+							<label for="id_person_count">Person</label>
 							{{order_form.person_count}}
 						</div>
 						<div class="form-item flex-column d-flex">				
-							<label for="check-in">Check in</label>
+							<label for="id_check_in">Check in</label>
 							{{order_form.check_in}}
 						</div>
 						<div class="form-item flex-column d-flex">				
-							<label for="check-out">Check out</label>
+							<label for="id_check_out">Check out</label>
 							{{order_form.check_out}}
 						</div> 
 					</div>				
@@ -65,13 +65,10 @@
 						</svg>
 					</div>
 				</div>
-
 			</div>
 			<div class = "swiper mySwiper">
 				<div class=" content-block swiper-wrapper">
-
-					{% for item in dest %}
-					
+					{% for item in dest %}					
 					<div style="background-image: url(media/{{item.dest_image}});" class = "content-item bg-options swiper-slide">
 						<div class = "content-text-block d-flex flex-column">
 							<span class = "location-title">{{item.place}}</span>
@@ -84,7 +81,6 @@
 							</div>
 						</div>
 					</div>
-
 					{% endfor %}
 				</div>
 			</div>
@@ -111,7 +107,6 @@
 					<div class = "line gap-above-line gap-below-line"></div>
 					<span class = "title-small d-block grey-text">Check out our special offer and discounts</span>
 				</div>
-
 				<div class = "arrows-wrap arrows-above">
 					<div class = "arrows-item arrow-left">
 						<svg width="12" height="22" viewBox="0 0 12 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -126,18 +121,15 @@
 				</div>
 			</div>
 			<div class="swiper offerSwiper">
-				<div class = "offer-wrap d-flex swiper-wrapper">
-					
+				<div class = "offer-wrap d-flex swiper-wrapper">					
 					{% for item in data %}
 					{% if item.is_special == True %}
 					<div class = "offer-item swiper-slide">
-						<div style="background-image: url(media/{{item.trip_image}});" class = "offer-image-block bg-options">	
-							
+						<div style="background-image: url(media/{{item.trip_image}});" class = "offer-image-block bg-options">								
 						</div>
 						<div class = "offer-text-block">	
 							<div class = "offer-rate">
-								<span class = "offer-title grey-text d-block">{{ item.title }}</span>
-								
+								<span class = "offer-title grey-text d-block">{{ item.title }}</span>								
 								{% for i in '0123456789'|make_list %}
 									{% if  forloop.counter <= item.rating %}
 									<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -157,13 +149,11 @@
 										<a class="offer-btn" href = "offers/{{item.id}}">Details</a>
 									</div>
 								</div>
-							</div>
-							
+							</div>							
 						</div>
 					</div>	
 					{% endif %}
-					{% endfor %}
-					
+					{% endfor %}					
 				</div>
 			</div>
 			<div class = "arrows-wrap arrows-below">
@@ -190,15 +180,13 @@
 				</div>
 			</div>
 			<div class="blog-post-wrap d-flex">
-				<div style = "background-image: url(media/{{blog.image}});" class = "blog-image-block backgr-position">	
-						
+				<div style = "background-image: url(media/{{blog.image}});" class = "blog-image-block backgr-position">							
 				</div>
 				<div class="blog-text d-flex flex-column">
 					<div class="blog-title black-text">
 						<span class="d-block">
 							{{blog.title}}
 						</span>
-
 					</div>
 					<span class = "blog-description d-block black-text normal-text">
 						{{blog.text|truncatewords:180}}
@@ -238,8 +226,7 @@
 						{% for item in data %}
 						{% if item.is_special == False %}
 						<div class="planner-item swiper-slide">
-							<div style = "background-image: url(media/{{item.trip_image}});" class="planner-gallery-image planner-popup backgr-position bg-options">
-								
+							<div style = "background-image: url(media/{{item.trip_image}});" class="planner-gallery-image planner-popup backgr-position bg-options">								
 							</div>						
 							<div class="planner-text flex-column">
 								<div class="price-day">
